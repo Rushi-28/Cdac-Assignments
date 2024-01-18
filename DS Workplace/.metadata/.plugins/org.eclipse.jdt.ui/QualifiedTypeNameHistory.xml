@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.io.BufferedReader"/>
+    <fullyQualifiedTypeName name="java.io.InputStreamReader"/>
+    <fullyQualifiedTypeName name="charStack.Cstack"/>
+    <fullyQualifiedTypeName name="bookStack.Cstack"/>
+    <fullyQualifiedTypeName name="linearQueue.Linear"/>
+    <fullyQualifiedTypeName name="circularQueue.CircularQueue"/>
+    <fullyQualifiedTypeName name="linearQueue.Customer"/>
+    <fullyQualifiedTypeName name="linearQueue.CustQueue"/>
+    <fullyQualifiedTypeName name="intLinkedList.Node"/>
+    <fullyQualifiedTypeName name="intLinkedList.Linkedlist"/>
+    <fullyQualifiedTypeName name="stringLinkedList.LinkedList"/>
+    <fullyQualifiedTypeName name="stringLinkedList.Node"/>
+    <fullyQualifiedTypeName name="IntLinkedlist.LinkedList"/>
+    <fullyQualifiedTypeName name="doubly.DoublyLinkedlist"/>
+    <fullyQualifiedTypeName name="circular.LinkedList"/>
+    <fullyQualifiedTypeName name="dynamic.Queue"/>
+    <fullyQualifiedTypeName name="Sort.Array"/>
+    <fullyQualifiedTypeName name="doubleEndedQueue.DoubleEnded"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+</qualifiedTypeNameHistroy>

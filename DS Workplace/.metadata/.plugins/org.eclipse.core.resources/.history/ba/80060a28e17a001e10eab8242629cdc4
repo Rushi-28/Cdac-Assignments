@@ -1,0 +1,62 @@
+package binarySearchTree;
+
+import java.util.Scanner;
+
+
+public class Demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		BSTree t=new BSTree();
+		int ch,data;
+		Scanner sc =new Scanner(System.in);
+		do {
+			System.out.println("1. Add data in Tree");
+			System.out.println("2. Display data in Tree");
+			System.out.println("3. Display Inorder data in Tree");
+			System.out.println("4. Display Preorder data in Tree");
+			System.out.println("5. Display Postorder data in Tree");
+			System.out.println("6. Find Largest data in Tree");
+			System.out.println("7. Find Lowest data in Tree");
+			System.out.println("8. Height of Tree");
+			System.out.println("9. Delete data in Tree");
+			System.out.println("10. Search Data");
+			System.out.println("0. Exit");
+			System.out.println("Enter Your Choise");
+			ch=sc.nextInt();
+			switch (ch) {
+			case 1: System.out.println("Enter Data to insert ");
+					data=sc.nextInt();
+					t.addNode(data);
+					break;
+			
+			case 2: t.display();break;
+			
+			case 3: t.inorder(t.root);break;
+			
+			case 4: t.preorder(t.root);break;
+			
+			case 5: t.postorder(t.root);break;
+			
+			case 6: System.out.println("Largest Data in Tree : "+t.findLargest());break;
+			
+			case 7: System.out.println("Lowest Data in Tree : "+t.findLowest());break;
+			
+			case 8: System.out.println("Height of Tree : "+t.findHeight(t.root));break;
+			
+			case 9: System.out.println("Enter Data to be deleted: ");
+					data=sc.nextInt();
+					t.deleteNode(data);
+					break;
+					
+			case 10: System.out.println("Enter data to be search: "); 
+					 data=sc.nextInt();
+					if(t.search(data))
+						System.out.println(data+" is Present in tree...");
+					else System.out.println(data+" is Not Present in tree...");
+			}
+		} while (ch!=0);
+		
+	}
+
+}

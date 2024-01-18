@@ -1,0 +1,30 @@
+package binarySearchTree;
+
+public class Queue {
+	QNode front,rear;
+	public Queue()
+	{
+		front=rear=null;
+	}
+	public void enque(int data)
+	{
+		Node n1=new Node(data);
+		if(front==null)
+			rear=front=n1;
+		else
+			{
+				rear.next=n1;
+				n1=rear;
+			}
+	}
+	public int dequeue()
+	{
+		int data=-9999;
+		data=front.data;
+		if(front==rear)
+			front=rear=null;
+		else
+			front=front.next;
+		return data;
+	}
+}

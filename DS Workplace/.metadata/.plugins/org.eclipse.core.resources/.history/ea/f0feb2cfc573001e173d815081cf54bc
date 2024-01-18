@@ -1,0 +1,42 @@
+package IntLinkedlist;
+
+import stringLinkedList.Node;
+
+public class LinkedList {
+	Node head;
+
+	public LinkedList() {
+		head=null;
+	}
+	public void addNode(int data)
+	{
+		Node res=new Node(data);
+		if(head==null)
+			head=res;
+		else {
+			Node move;
+			for(move=head;move.getNext()!=null;move=move.getNext())
+			{
+				if(move.getData()<res.getData() && move.getNext().getData()>res.getData())
+				{
+					move.setNext(res);
+					break;
+				}
+			}
+		}
+	}
+	public void display()
+	{
+		if(head==null)
+			System.out.println("Linked List is empty ");
+		else
+		{
+			Node move;
+			for(move=head;move.getNext()!=null;move=move.getNext())
+				System.out.print(move.getData()+"\t");
+			if(move.getNext()==null)
+				System.out.println(move.getData());
+		}
+	}
+	
+}

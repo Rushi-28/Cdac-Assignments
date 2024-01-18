@@ -1,0 +1,7 @@
+package binarySearchTree;
+
+public class QNode {
+int data;
+QNode next;
+s
+}

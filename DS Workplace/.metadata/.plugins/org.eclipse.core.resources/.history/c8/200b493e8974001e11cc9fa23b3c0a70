@@ -1,0 +1,64 @@
+package IntLinkedlist;
+
+import java.util.Scanner;
+
+public class Demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		LinkedList l1=new LinkedList();
+		
+		Scanner sc=new Scanner(System.in);
+		int ch,data,pos;
+		do {
+			System.out.println("\t1.Add data in sorted order");			//
+			System.out.println("\t2.Add data at beginning");			//
+			System.out.println("\t3.Data is present or not");			//
+			System.out.println("\t4.No of Nodes in Linked List");		//
+			System.out.println("\t5.Modify given data");	
+			System.out.println("\t6.Modify data at given index");
+			System.out.println("\t7.Delete node having data");			//
+			System.out.println("\t8.Insert node at given position");	//
+			System.out.println("\t9.Display Linked List");				//
+			System.out.println("\t10.Sort linked list");				//		
+			System.out.println("\t0.Exit");					
+			System.out.println("\tEnter Your Choise: ");
+			ch=sc.nextInt();
+			switch (ch) {
+			case 1: System.out.println("Enter data");
+					data=sc.nextInt();
+					l1.addNode(data);
+					break;
+					
+			case 2: System.out.println("Enter data");
+					data=sc.nextInt();
+					l1.addBeg(data);
+					break;
+			
+			case 3: System.out.println("Enter data to search");
+					data=sc.nextInt();
+					l1.search(data);
+					break;
+					
+			case 4: System.out.println("Nodes in linked list: "+l1.size());
+					break;
+					
+			case 7: System.out.println("Enter data to be delete");
+					data=sc.nextInt();
+					l1.delete(data);
+					break;
+					
+			case 8: System.out.println("Enter position to insert data");
+			 		pos=sc.nextInt();
+			 		System.out.println("Enter data");
+					data=sc.nextInt();
+			 		l1.insert(data,pos);
+			 		break;
+			 		
+			case 9: l1.display();
+					break;
+			}
+		}while(ch!=0);
+	}
+
+}

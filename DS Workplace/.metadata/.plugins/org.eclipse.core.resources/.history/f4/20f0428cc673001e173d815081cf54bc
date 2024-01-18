@@ -1,0 +1,15 @@
+package IntLinkedlist;
+
+public class Demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		LinkedList l1=new LinkedList();
+		l1.addNode(10);
+		l1.addNode(15);
+		l1.addNode(18);
+		l1.addNode(16);
+		l1.display();
+	}
+
+}

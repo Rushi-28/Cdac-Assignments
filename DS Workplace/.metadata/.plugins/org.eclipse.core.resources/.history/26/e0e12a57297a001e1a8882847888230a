@@ -1,0 +1,62 @@
+package graph;
+
+import java.util.Scanner;
+
+public class Graph {
+	int ver;
+	int[][] arr;
+
+	public Graph(int size) {
+		ver = size;
+		arr = new int[size][size];
+	}
+
+	public void acceptGraph() {
+		Scanner sc = new Scanner(System.in);
+		for (int i = 0; i < ver; i++) {
+			for (int j = 0; j < ver; j++) {
+				System.out.println("Enter adjacent for " + i + " and " + j);
+				arr[i][j] = sc.nextInt();
+			}
+		}
+		sc.close();
+	}
+
+	public void addEdge(int i, int j) {
+		arr[i][j] = 1;
+		arr[j][i] = 1;
+	}
+
+	public void inDegree() {
+		int cnt = 0;
+		for (int i = 0; i < ver; i++) {
+			cnt = 0;
+			for (int j = 0; j < ver; j++) {
+				if (arr[i][j] == 1)
+					cnt++;
+			}
+			System.out.println("Indegree of "+i+" Colomn: "+cnt);
+		}
+
+	}
+
+	public void outDegree() {
+		int cnt = 0;
+		for (int i = 0; i < ver; i++) {
+			cnt = 0;
+			for (int j = 0; j < ver; j++) {
+				if (arr[j][i] == 1)
+					cnt++;
+			}
+			System.out.println("Outdegree of "+i+" Row: "+cnt);
+		}
+	}
+	public void display() {
+		for(int i = 0 ; i <ver; i++) {
+			for(int j = 0 ; j<ver ; j++) {
+				System.out.print(arr[i][j]+" ");
+			}
+			System.out.println();
+		}
+	}
+}

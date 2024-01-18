@@ -1,0 +1,21 @@
+package tree;
+
+public class Demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Tree t=new Tree();
+		t.addNode(190);
+		t.addNode(20);
+		t.addNode(60);
+		t.addNode(70);
+		t.addNode(90);
+		t.addNode(150);
+		t.addNode(2);
+		t.addNode(3);
+		t.addNode(9);
+		t.addNode(7);
+		t.display();
+	}
+
+}
