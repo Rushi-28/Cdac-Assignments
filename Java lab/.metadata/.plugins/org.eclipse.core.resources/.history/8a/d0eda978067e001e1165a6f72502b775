@@ -1,0 +1,31 @@
+package assi4;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.*;
+
+public class Demo {
+public static void main(String[] args) throws Exception {
+	Map<String,Integer>m1=new HashMap<>();
+	BufferedReader br=new BufferedReader(new FileReader("D:/Emailid.txt"));
+	String str;
+	while((str=br.readLine())!=null)
+	{
+		System.out.println(str);
+		int cnt=str.indexOf("@");
+		String p=str.substring(cnt+1);
+		if(str.contains(p))
+		{
+			int n=m1.get(p);
+			m1.replace(p, ++n);
+		}
+		else
+		{
+			m1.put(p, 1);
+		}
+		
+	}
+	br.close();
+}
+}

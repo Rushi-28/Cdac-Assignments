@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+    <typeInfo handle="=customer/src&lt;customer{Customer.java[Customer" modifiers="1" timestamp="1696674034176"/>
+    <typeInfo handle="=officeproject/src&lt;officeproject.utility{Person.java[Person" modifiers="1" timestamp="1696663420068"/>
+    <typeInfo handle="=officeproject/src&lt;officeproject.staff{Emp.java[Emp" modifiers="1" timestamp="1696662653815"/>
+    <typeInfo handle="=polyoffice/src&lt;polyoffice.util{Person.java[Person" modifiers="1" timestamp="1697181241356"/>
+    <typeInfo handle="=polycustomer/src&lt;polycustomer{Customer.java[Customer" modifiers="1" timestamp="1697540091778"/>
+    <typeInfo handle="=point/src&lt;point{ColourPoint.java[ColourPoint" modifiers="1" timestamp="1697023011621"/>
+    <typeInfo handle="=polyoffice/src&lt;polyoffice.staff{Emp.java[Emp" modifiers="1" timestamp="1696843382609"/>
+    <typeInfo handle="=intreface/src&lt;intrefaceAss2{IntOperation.java[IntOperation" modifiers="513" timestamp="1696929068569"/>
+    <typeInfo handle="=intreface/D:\/New folder\/eclipse-jee-2023-09-R-win32-x86_64\/eclipse\/plugins\/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.8.v20230831-1047\/jre\/lib\/jrt-fs.jar`java.base=/javadoc_location=/https:\/\/docs.oracle.com\/en\/java\/javase\/17\/docs\/api\/=/=/module=/true=/&lt;java.util.function(IntFunction.class[IntFunction" modifiers="1537" timestamp="1696573905173"/>
+    <typeInfo handle="=intreface/src&lt;intrefaceAssi4{ObjCompare.java[ObjCompare" modifiers="513" timestamp="1697014340518"/>
+    <typeInfo handle="=exceptionHandling/D:\/New folder\/eclipse-jee-2023-09-R-win32-x86_64\/eclipse\/plugins\/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.8.v20230831-1047\/jre\/lib\/jrt-fs.jar`java.base=/javadoc_location=/https:\/\/docs.oracle.com\/en\/java\/javase\/17\/docs\/api\/=/=/module=/true=/&lt;java.lang(Exception.class[Exception" modifiers="33" timestamp="1696573905173"/>
+    <typeInfo handle="=multithreading1/D:\/New folder\/eclipse-jee-2023-09-R-win32-x86_64\/eclipse\/plugins\/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.8.v20230831-1047\/jre\/lib\/jrt-fs.jar`java.base=/javadoc_location=/https:\/\/docs.oracle.com\/en\/java\/javase\/17\/docs\/api\/=/=/module=/true=/&lt;java.lang(Runnable.class[Runnable" modifiers="1537" timestamp="1696573905173"/>
+</typeInfoHistroy>
