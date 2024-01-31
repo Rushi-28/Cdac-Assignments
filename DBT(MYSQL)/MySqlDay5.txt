@@ -1,0 +1,40 @@
+Name starting with r
+select  name 
+from emptab
+where  name like 'R%';
+
+Name ending with h
+select  name 
+from emptab
+where  name like '%h';
+
+starting with s and ending with r
+select  name 
+from emptab
+where  name like 'S%' and job like '%r';
+
+ 
+
+select  name 
+from emptab
+where  name like 'S%n';
+
+select  name 
+from emptab
+where  name like 'S%' and name like '%n';
+
+any name which contains s
+select  name 
+from emptab
+where  name like '%s%'  ;
+
+find names where s is at 2nd last pos
+
+select  name 
+from emptab
+where  name like '%s_'  ;
+
+
+select  name 
+from emptab
+where  name like '__j%' and (job like '%r' or job like '%t') ;

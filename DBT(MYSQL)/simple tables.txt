@@ -1,0 +1,376 @@
+create table vehicle 
+(
+vid int,
+vname varchar(12),
+price int,
+discount int,
+milage int,
+details varchar(50)
+);
+
+insert into vehicle values(1,'Activa',80000,10,35, 'Two wheeler, sturdy');
+insert into vehicle values(2,'Santra',85000,20,20, 'Product of Hyandai');
+insert into vehicle values(3,'Yamaha',160000,5,70, 'Sturdy and good milage');
+insert into vehicle values(4,'i-10',300000,8,18, 'Good small car');
+insert into vehicle values(5,'Wagan-R',250000,10,25, 'Good Milage Car');
+insert into vehicle values(6,'Splender',750000,9,65, 'Best Bike');
+insert into vehicle values(7,'Enfield',190000,5,40, 'a Royal Bike');
+
++------+----------+--------+----------+--------+------------------------+
+| vid  | vname    | price  | discount | milage | details                |
++------+----------+--------+----------+--------+------------------------+
+|    1 | Activa   |  80000 |       10 |     35 | Two wheeler, sturdy    |
+|    2 | Santra   |  85000 |       20 |     20 | Product of Hyandai     |
+|    3 | Yamaha   | 160000 |        5 |     70 | Sturdy and good milage |
+|    4 | i-10     | 300000 |        8 |     18 | Good small car         |
+|    5 | Wagan-R  | 250000 |       10 |     25 | Good Milage Car        |
+|    6 | Splender | 750000 |        9 |     65 | Best Bike              |
+|    7 | Enfield  | 190000 |        5 |     40 | a Royal Bike           |
++------+----------+--------+----------+--------+------------------------+
+
+
+create table customer
+(
+custid int,
+cname varchar(20),
+location varchar(20)
+);
+
+insert into customer values(1,'Nilima','Pimpri');
+insert into customer values(2,'Ganesh','Pune');
+insert into customer values(3,'Kishor','Kothrud');
+insert into customer values(4,'Priya','Aundh');
+
++--------+--------+----------+
+| custid | cname  | location |
++--------+--------+----------+
+|      1 | Nilima | Pimpri   |
+|      2 | Ganesh | Pune     |
+|      3 | Kishor | Kothrud  |
+|      4 | Priya  | Aundh    |
++--------+--------+----------+
+
+create table salesman
+(
+sid int,
+sname varchar(20),
+city varchar(12),
+experience int
+);
+
+insert into salesman values(10,'Rajesh','mumbai',5);
+insert into salesman values(11,'Seema','Pune',8);
+insert into salesman values(12,'Shailesh','Nagpur',7);
+insert into salesman values(13,'Rakhi','Pune',2);
+
+
++------+----------+--------+------------+
+| sid  | sname    | city   | experience |
++------+----------+--------+------------+
+|   10 | Rajesh   | mumbai |          5 |
+|   11 | Seema    | Pune   |          8 |
+|   12 | Shailesh | Nagpur |          7 |
+|   13 | Rakhi    | Pune   |          2 |
++------+----------+--------+------------+
+
+
+select vid 'Vehicle id', vname 'Vehicle name',price,discount,details from vehicle;
+
++------------+--------------+--------+----------+------------------------+
+| Vehicle id | Vehicle name | price  | discount | details                |
++------------+--------------+--------+----------+------------------------+
+|          1 | Activa       |  80000 |       10 | Two wheeler, sturdy    |
+|          2 | Santra       |  85000 |       20 | Product of Hyandai     |
+|          3 | Yamaha       | 160000 |        5 | Sturdy and good milage |
+|          4 | i-10         | 300000 |        8 | Good small car         |
+|          5 | Wagan-R      | 250000 |       10 | Good Milage Car        |
+|          6 | Splender     | 750000 |        9 | Best Bike              |
+|          7 | Enfield      | 190000 |        5 | a Royal Bike           |
++------------+--------------+--------+----------+------------------------+
+
+select sname from salesman where city='Pune';
+
++-------+
+| sname |
++-------+
+| Seema |
+| Rakhi |
++-------+
+
+delete from customer where location='Pimpri';
+
++--------+--------+----------+
+| custid | cname  | location |
++--------+--------+----------+
+|      2 | Ganesh | Pune     |
+|      3 | Kishor | Kothrud  |
+|      4 | Priya  | Aundh    |
++--------+--------+----------+
+
+select *from vehicle where vname='Splender';
+
++------+----------+--------+----------+--------+-----------+
+| vid  | vname    | price  | discount | milage | details   |
++------+----------+--------+----------+--------+-----------+
+|    6 | Splender | 750000 |        9 |     65 | Best Bike |
++------+----------+--------+----------+--------+-----------+
+
+update vehicle set price=800000 where price=750000;
+
++------+----------+--------+----------+--------+------------------------+
+| vid  | vname    | price  | discount | milage | details                |
++------+----------+--------+----------+--------+------------------------+
+|    1 | Activa   |  80000 |       10 |     35 | Two wheeler, sturdy    |
+|    2 | Santra   |  85000 |       20 |     20 | Product of Hyandai     |
+|    3 | Yamaha   | 160000 |        5 |     70 | Sturdy and good milage |
+|    4 | i-10     | 300000 |        8 |     18 | Good small car         |
+|    5 | Wagan-R  | 250000 |       10 |     25 | Good Milage Car        |
+|    6 | Splender | 800000 |        9 |     65 | Best Bike              |
+|    7 | Enfield  | 190000 |        5 |     40 | a Royal Bike           |
++------+----------+--------+----------+--------+------------------------+
+
+create table customer1 as select * from customer;
+
+create table salesman1 as select * from salesman;
+
+delete from customer;
+select * from customer;
+Empty set (0.00 sec)
+
+drop table salesman;
+
+select vid,vname,price,details, price-discount 'Total Price' from vehicle;
+
++------+----------+--------+------------------------+-------------+
+| vid  | vname    | price  | details                | Total Price |
++------+----------+--------+------------------------+-------------+
+|    1 | Activa   |  80000 | Two wheeler, sturdy    |       79990 |
+|    2 | Santra   |  85000 | Product of Hyandai     |       84980 |
+|    3 | Yamaha   | 160000 | Sturdy and good milage |      159995 |
+|    4 | i-10     | 300000 | Good small car         |      299992 |
+|    5 | Wagan-R  | 250000 | Good Milage Car        |      249990 |
+|    6 | Splender | 800000 | Best Bike              |      799991 |
+|    7 | Enfield  | 190000 | a Royal Bike           |      189995 |
++------+----------+--------+------------------------+-------------+
+
+select * from vehicle where price<100000;
+
++------+--------+-------+----------+--------+---------------------+
+| vid  | vname  | price | discount | milage | details             |
++------+--------+-------+----------+--------+---------------------+
+|    1 | Activa | 80000 |       10 |     35 | Two wheeler, sturdy |
+|    2 | Santra | 85000 |       20 |     20 | Product of Hyandai  |
++------+--------+-------+----------+--------+---------------------+
+
+select *from salesman1 where experience>5;
+
++------+----------+--------+------------+
+| sid  | sname    | city   | experience |
++------+----------+--------+------------+
+|   11 | Seema    | Pune   |          8 |
+|   12 | Shailesh | Nagpur |          7 |
++------+----------+--------+------------+
+
+create table employee
+(
+eno int,
+ename varchar(12),
+basic int,
+incentives int
+);
+
+insert into employee values(1,'Rajesh',20000,1500);
+insert into employee values(2,'Sarita',25000,1000);
+insert into employee values(3,'Meera',15000,3000);
+insert into employee values(4,'Jitesh',30000,500);
+insert into employee values(5,'Ramesh',12000,3000);
+
++------+--------+-------+------------+
+| eno  | ename  | basic | incentives |
++------+--------+-------+------------+
+|    1 | Rajesh | 20000 |       1500 |
+|    2 | Sarita | 25000 |       1000 |
+|    3 | Meera  | 15000 |       3000 |
+|    4 | Jitesh | 30000 |        500 |
+|    5 | Ramesh | 12000 |       3000 |
++------+--------+-------+------------+
+
+select * from employee where basic>15000;
+
++------+--------+-------+------------+
+| eno  | ename  | basic | incentives |
++------+--------+-------+------------+
+|    1 | Rajesh | 20000 |       1500 |
+|    2 | Sarita | 25000 |       1000 |
+|    4 | Jitesh | 30000 |        500 |
++------+--------+-------+------------+
+
+update employee set incentives=1000 where ename='Jitesh';
+
++------+--------+-------+------------+
+| eno  | ename  | basic | incentives |
++------+--------+-------+------------+
+|    1 | Rajesh | 20000 |       1500 |
+|    2 | Sarita | 25000 |       1000 |
+|    3 | Meera  | 15000 |       3000 |
+|    4 | Jitesh | 30000 |       1000 |
+|    5 | Ramesh | 12000 |       3000 |
++------+--------+-------+------------+
+
+update employee set basic=basic+basic*0.05 where incentive<2000;
+
+insert into employee values(20,'Ajay',16000,NULL);
+
++------+--------+-------+------------+
+| eno  | ename  | basic | incentives |
++------+--------+-------+------------+
+|    1 | Rajesh | 21000 |       1500 |
+|    2 | Sarita | 26250 |       1000 |
+|    3 | Meera  | 15000 |       3000 |
+|    4 | Jitesh | 31500 |       1000 |
+|    5 | Ramesh | 12000 |       3000 |
+|   20 | Ajay   | 16000 |       NULL |
++------+--------+-------+------------+
+
+delete from employee where ename='Meera';
+
++------+--------+-------+------------+
+| eno  | ename  | basic | incentives |
++------+--------+-------+------------+
+|    1 | Rajesh | 21000 |       1500 |
+|    2 | Sarita | 26250 |       1000 |
+|    4 | Jitesh | 31500 |       1000 |
+|    5 | Ramesh | 12000 |       3000 |
+|   20 | Ajay   | 16000 |       NULL |
++------+--------+-------+------------+
+
+alter table employee add job varchar(12);
+
++------+--------+-------+------------+------+
+| eno  | ename  | basic | incentives | job  |
++------+--------+-------+------------+------+
+|    1 | Rajesh | 21000 |       1500 | NULL |
+|    2 | Sarita | 26250 |       1000 | NULL |
+|    4 | Jitesh | 31500 |       1000 | NULL |
+|    5 | Ramesh | 12000 |       3000 | NULL |
+|   20 | Ajay   | 16000 |       NULL | NULL |
++------+--------+-------+------------+------+
+
+update employee set job='Head Cleark' where ename='Ramesh';
+
++------+--------+-------+------------+-------------+
+| eno  | ename  | basic | incentives | job         |
++------+--------+-------+------------+-------------+
+|    1 | Rajesh | 21000 |       1500 | NULL        |
+|    2 | Sarita | 26250 |       1000 | NULL        |
+|    4 | Jitesh | 31500 |       1000 | NULL        |
+|    5 | Ramesh | 12000 |       3000 | Head Cleark |
+|   20 | Ajay   | 16000 |       NULL | NULL        |
++------+--------+-------+------------+-------------+
+
+update employee set job='Analyst' where ename='Sarita';
+update employee set job='Analyst' where ename='Rajesh';
+update employee set job='Manager' where ename='Ajay';
+update employee set job='Manager' where ename='Jitesh';
+
++------+--------+-------+------------+-------------+
+| eno  | ename  | basic | incentives | job         |
++------+--------+-------+------------+-------------+
+|    1 | Rajesh | 21000 |       1500 | Analyst     |
+|    2 | Sarita | 26250 |       1000 | Analyst     |
+|    4 | Jitesh | 31500 |       1000 | Manager     |
+|    5 | Ramesh | 12000 |       3000 | Head Cleark |
+|   20 | Ajay   | 16000 |       NULL | Manager     |
++------+--------+-------+------------+-------------+
+
+select * from employee where basic between 12000 and 21000;
+
++------+--------+-------+------------+-------------+
+| eno  | ename  | basic | incentives | job         |
++------+--------+-------+------------+-------------+
+|    1 | Rajesh | 21000 |       1500 | Analyst     |
+|    5 | Ramesh | 12000 |       3000 | Head Cleark |
+|   20 | Ajay   | 16000 |       NULL | Manager     |
++------+--------+-------+------------+-------------+
+
+select *from employee where basic in(21000,12000,1350);
+OR
+select * from employee where basic=21000 or basic=12000 or basic=1350;
+
++------+--------+-------+------------+-------------+
+| eno  | ename  | basic | incentives | job         |
++------+--------+-------+------------+-------------+
+|    1 | Rajesh | 21000 |       1500 | Analyst     |
+|    5 | Ramesh | 12000 |       3000 | Head Cleark |
++------+--------+-------+------------+-------------+
+
+
+select *from employee where basic>20000 and incentives>1000;
+
++------+--------+-------+------------+---------+
+| eno  | ename  | basic | incentives | job     |
++------+--------+-------+------------+---------+
+|    1 | Rajesh | 21000 |       1500 | Analyst |
++------+--------+-------+------------+---------+
+
+select *from employee where job>'Head Cleark' or incentives>1000;
+
++------+--------+-------+------------+-------------+
+| eno  | ename  | basic | incentives | job         |
++------+--------+-------+------------+-------------+
+|    1 | Rajesh | 21000 |       1500 | Analyst     |
+|    4 | Jitesh | 31500 |       1000 | Manager     |
+|    5 | Ramesh | 12000 |       3000 | Head Cleark |
+|   20 | Ajay   | 16000 |       NULL | Manager     |
++------+--------+-------+------------+-------------+
+
+select *from employee where basic=21000 or basic=10000;
+
++------+--------+-------+------------+---------+
+| eno  | ename  | basic | incentives | job     |
++------+--------+-------+------------+---------+
+|    1 | Rajesh | 21000 |       1500 | Analyst |
++------+--------+-------+------------+---------+
+
+select *from employee where basic>=21000 and basic<30000;
+
++------+--------+-------+------------+---------+
+| eno  | ename  | basic | incentives | job     |
++------+--------+-------+------------+---------+
+|    1 | Rajesh | 21000 |       1500 | Analyst |
+|    2 | Sarita | 26250 |       1000 | Analyst |
++------+--------+-------+------------+---------+
+
+select *from employee where basic<>21000 and basic<30000;
+
++------+--------+-------+------------+-------------+
+| eno  | ename  | basic | incentives | job         |
++------+--------+-------+------------+-------------+
+|    2 | Sarita | 26250 |       1000 | Analyst     |
+|    5 | Ramesh | 12000 |       3000 | Head Cleark |
+|   20 | Ajay   | 16000 |       NULL | Manager     |
++------+--------+-------+------------+-------------+
+
+select *from employee where job='Head Cleark' or job='Analyst' and basic>20000;
+
++------+--------+-------+------------+-------------+
+| eno  | ename  | basic | incentives | job         |
++------+--------+-------+------------+-------------+
+|    1 | Rajesh | 21000 |       1500 | Analyst     |
+|    2 | Sarita | 26250 |       1000 | Analyst     |
+|    5 | Ramesh | 12000 |       3000 | Head Cleark |
++------+--------+-------+------------+-------------+
+
+
+select *from employee where basic not in(21000,12000,1350);
+
++------+--------+-------+------------+---------+
+| eno  | ename  | basic | incentives | job     |
++------+--------+-------+------------+---------+
+|    2 | Sarita | 26250 |       1000 | Analyst |
+|    4 | Jitesh | 31500 |       1000 | Manager |
+|   20 | Ajay   | 16000 |       NULL | Manager |
++------+--------+-------+------------+---------+
+
+select * from employee where incentives=null;
+

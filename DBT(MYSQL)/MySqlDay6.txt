@@ -1,0 +1,168 @@
+name starting with A
+
+select ename from emp
+where regexp_like(ename,'^A');
+
+name starting with A and ending with N
+select ename from emp
+where regexp_like(ename,'^A.*N$');
+
+l at 3rd pos
+select ename from emp
+where regexp_like(ename,'^..L.*');
+
+start with A or M 
+select ename from emp
+where regexp_like(ename,'^[AM]');
+
+not start with A or M 
+select ename from emp
+where regexp_like(ename,'^[^AM]');
+
+start with A or J and start with m and end with n
+select ename from emp
+where regexp_like(ename,'^[AJ]|^m.*n$');
+
+================================================
+
+string functions
+
+-length
+select ename,length(ename) from emp;
+
+-lower
+select ename,lower(ename) from emp;
+
+-upper
+select ename,lower(ename),upper(lower(ename)) from emp;
+
+-ascii
+ gives ascii of first char in the string
+ select job,ascii(job) from emp;
+
+-concat
+ select ename,job,concat(ename,',',job) from emp;
+  select ename,job,concat(ename,',',job,sal,comm) from emp;
+ * select ename,job,concat( (concat(ename,ifnull   (job,'Searching..')),sal)) from      emp;
+select ename,job,concat(ename,',',job,sal,comm) from emp;
+
+-concat_ws(seperator,col1,col2)
+ select ename,job,concat_ws('::',ename,job,sal) from emp;
+ select ename,concat(ename,'@knowit.com') from emp;
+
+-substr(str,pos,len)
+select ename,substr(ename,2,3) from emp;
+select ename,substr(ename,-2,4) from emp; 
+
+email id where 3 chars of name, last 2 chars of job in lower case knowit
+job lower(substr(job,-2,2))
+name substr(ename,1,3)
+select ename,job,concat(substr(ename,1,3),lower(substr(job,-2,2)),'@knowit.com') as email from emp;
+
+-format(number,decimal)
+select format(1232345.4536,3);
+
+-reverse(job)
+select job,reverse(job) from emp;
+
+-rpad()
+ select rpad('Knowit',9,'*');
+
+-replace()
+ select replace('india is my country','my','beautiful')
+
+-ltrim()
+
+insert into emp(empno,ename)
+values(666,'    Amit'),
+      (555,'   Smita  '),
+      (444,'Mahesh    ');
+select ename,length(ename), rtrim(ename),length(rtrim(ename)) from emp;
+
+-trim()
+select ename,length(ename), trim(ename),length( trim(ename)) from emp;
+-lpad
+ select rpad('Knowit',11,'#');
+
+--------------------------------
+group by
+
+select sum(sal) from emp;
+
+select count(sal) from emp;
+
+select count(*) from emp;
+
+select count(comm) from emp;
+mysql> select count(comm) from emp;
++-------------+
+| count(comm) |
++-------------+
+|           5 |
++-------------+
+1 row in set (0.00 sec)
+
+select sum(sal) from emp
+where deptno=10; 
+
+
+select sum(sal),deptno from emp
+group by deptno;
+mysql> select sum(sal) from emp
+    -> where deptno=10;
++----------+
+| sum(sal) |
++----------+
+| 12449.00 |
++----------+
+1 row in set (0.00 sec)
+
+
+select sum(sal),job from emp
+group by job;
+mysql> select sum(sal),job from emp
+    -> group by job;
++----------+----------+
+| sum(sal) | job      |
++----------+----------+
+| 12849.00 | CLERK    |
+|  5600.00 | SALESMAN |
+|  8275.00 | MANAGER  |
+|  6000.00 | ANALYST  |
++----------+----------+
+4 rows in set (0.00 sec)
+
+
+select count(job),job 
+from emp
+group by job ;
+mysql> select count(job),job
+    -> from emp
+    -> group by job ;
++------------+----------+
+| count(job) | job      |
++------------+----------+
+|          4 | CLERK    |
+|          4 | SALESMAN |
+|          3 | MANAGER  |
+|          2 | ANALYST  |
++------------+----------+
+4 rows in set (0.00 sec)
+
+
+select count(distinct job) 
+from emp;
+mysql> select count(distinct job)
+    -> from emp;
++---------------------+
+| count(distinct job) |
++---------------------+
+|                   4 |
++---------------------+
+1 row in set (0.00 sec)
+
+
+
+
+
+ 

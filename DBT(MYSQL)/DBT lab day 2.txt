@@ -1,0 +1,40 @@
+password - root;
+
+show databases;
+
+use knowit;
+
+show tables;
+
+select * from emp;
+
+select * from dept;
+
+1-> 	select ename,sal,DEPTNO
+	from emp
+	where deptno=20;
+
+2->	select *
+	from emp
+	where hiredate>'1981-06-09';
+
+3->	select empno,ename,sal,comm,sal+ifnull(comm,0) as 'Total Salary'
+	from emp;
+
+4->	select e.ename,e.deptno,d.dname
+	from emp e,dept d
+	where ename='smith' and e.deptno=d.deptno;
+
+5->	select *
+	from emp
+	where sal<2000 and(job='clerk' or job='salesman');
+
+6->	select ename,sal,DEPTNO
+	from emp
+	where (deptno=20 or deptno=30) and (hiredate>'1982-01-01' and hiredate<'1982-12-31');
+
+7->	select empno,ename,sal,sal+(sal*20/100) as 'New Salary'
+	from emp;
+
+8->	create table emptemp as select * from emp
+	where 1=2;

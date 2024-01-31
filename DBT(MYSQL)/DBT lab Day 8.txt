@@ -1,0 +1,332 @@
+-------------
+Using joins
+-------------
+create table salesman
+(
+sid int primary key,
+sname varchar(15) unique not null,
+city varchar(15)
+);
+
+create table category
+(
+cid int primary key,
+cname varchar(15) unique not null,
+description varchar(30)
+);
+
+create table product
+(pid int primary key,
+pname varchar(20),
+price float(6,2) default 20.00,
+qty int check(qty>0),
+cid int, sid int,
+constraint fk_cid1 foreign key(cid) references category(cid) on delete set null,
+constraint fk_sid foreign key(sid) references salesman(sid));
+
+
+
+insert into salesman values(11,'rahul','pune');
+insert into salesman values(12,'kirti','mumbai');
+insert into salesman values(13,'prasad','nashik');
+insert into salesman values(14,'arnav','amravati');
+
+insert into category values(1,'chips','crunchy');
+insert into category values(2,'chocolate','very chocolaty');
+insert into category values(3,'snacks','yummy');
+insert into category values(4,'cold drinks','thanda thanda cool cool');
+
+insert into product values(123,'lays',30,30.00,1,12);
+insert into product values(111,'pepsi',40,50.00,4,11);
+insert into product values(134,'nachos',50,50.00,1,12);
+insert into product values(124,'dairy milk',40,60.00,2,14);
+insert into product values(125,'pringles',40,60.00,1,14);
+
+************************************************************************************
+
+1.  select p.pid,p.pname,p.cid
+	from product p 
+	join category c
+	on p.cid=c.cid and c.cname='Chips';
+
++-----+----------+------+
+| pid | pname    | cid  |
++-----+----------+------+
+| 123 | lays     |    1 |
+| 125 | pringles |    1 |
+| 134 | nachos   |    1 |
++-----+----------+------+
+
+************************************************************************************
+
+2. select p.pid,p.pname,p.sid
+from product p
+join salesman s
+on p.sid=s.sid and s.sname='kirti';
+
++-----+--------+------+
+| pid | pname  | sid  |
++-----+--------+------+
+| 123 | lays   |   12 |
+| 134 | nachos |   12 |
++-----+--------+------+
+
+************************************************************************************
+
+3. select s.sid,s.sname,s.city
+from salesman s
+left join product p
+on s.sid=p.sid 
+where p.sid is null;
++-----+--------+--------+
+| sid | sname  | city   |
++-----+--------+--------+
+|  13 | prasad | nashik |
++-----+--------+--------+
+
+**************************************************************************************
+
+4. SELECT c.cid, c.cname
+    FROM category c
+    LEFT JOIN product ON c.cid = product.cid
+    WHERE product.cid IS NULL;
++-----+--------+
+| cid | cname  |
++-----+--------+
+|   3 | snacks |
++-----+--------+
+
+*************************************************************************************
+
+insert into product values(135,'kitkat',40,3,null,12);
+
+ select * from product;
++-----+------------+-------+------+------+------+
+| pid | pname      | price | qty  | cid  | sid  |
++-----+------------+-------+------+------+------+
+| 111 | pepsi      | 40.00 |   50 |    4 |   11 |
+| 123 | lays       | 30.00 |   30 |    1 |   12 |
+| 124 | dairy milk | 40.00 |   60 |    2 |   14 |
+| 125 | pringles   | 40.00 |   60 |    1 |   14 |
+| 134 | nachos     | 50.00 |   50 |    1 |   12 |
+| 135 | kitkat     | 40.00 |    3 | NULL |   12 |
++-----+------------+-------+------+------+------+
+
+5. select p.cid , p.pname
+   from product p
+   left join category c
+   on p.cid = c.cid
+   where c.cid is null;
+
++------+--------+
+| cid  | pname  |
++------+--------+
+| NULL | kitkat |
++------+--------+
+
+
+
+*************************************************************************************
+
+6. select * from salesman
+where city like 'P%' or city like'N%';
++-----+--------+--------+
+| sid | sname  | city   |
++-----+--------+--------+
+|  11 | rahul  | pune   |
+|  13 | prasad | nashik |
++-----+--------+--------+
+
+*************************************************************************************
+
+7. alter table salesman
+   add column credit_limit int;
+
+ select * from salesman;
++-----+--------+----------+--------------+
+| sid | sname  | city     | credit_limit |
++-----+--------+----------+--------------+
+|  11 | rahul  | pune     |         NULL |
+|  12 | kirti  | mumbai   |         NULL |
+|  13 | prasad | nashik   |         NULL |
+|  14 | arnav  | amravati |         NULL |
++-----+--------+----------+--------------+
+
+*************************************************************************************
+
+8. select p.pid,p.pname , p.qty, p.price,c.cid,c.cname,c.description
+   from product p
+   join category c
+   where p.cid = c.cid;
++-----+------------+------+-------+-----+-------------+-------------------------+
+| pid | pname      | qty  | price | cid | cname       | description             |
++-----+------------+------+-------+-----+-------------+-------------------------+
+| 111 | pepsi      |   50 | 40.00 |   4 | cold drinks | thanda thanda cool cool |
+| 123 | lays       |   30 | 30.00 |   1 | chips       | crunchy                 |
+| 124 | dairy milk |   60 | 40.00 |   2 | chocolate   | very chocolaty          |
+| 125 | pringles   |   60 | 40.00 |   1 | chips       | crunchy                 |
+| 134 | nachos     |   50 | 50.00 |   1 | chips       | crunchy                 |
++-----+------------+------+-------+-----+-------------+-------------------------+
+
+*************************************************************************************
+
+9. select p.pid,p.pname , p.qty, s.sname ,p.sid ,s.city
+   from product p
+   join salesman s
+   where p.sid = s.sid;
++-----+------------+------+-------+------+----------+
+| pid | pname      | qty  | sname | sid  | city     |
++-----+------------+------+-------+------+----------+
+| 111 | pepsi      |   50 | rahul |   11 | pune     |
+| 123 | lays       |   30 | kirti |   12 | mumbai   |
+| 124 | dairy milk |   60 | arnav |   14 | amravati |
+| 125 | pringles   |   60 | arnav |   14 | amravati |
+| 134 | nachos     |   50 | kirti |   12 | mumbai   |
+| 135 | kitkat     |    3 | kirti |   12 | mumbai   |
++-----+------------+------+-------+------+----------+
+
+*************************************************************************************
+
+10. 
+SELECT e.empno,e.ename,d.deptno,d.dname
+FROM emp e
+JOIN dept d
+ON e.deptno = d.deptno;
++-------+---------+--------+------------+
+| empno | ename   | deptno | dname      |
++-------+---------+--------+------------+
+|  7369 | SMITH   |     20 | RESEARCH   |
+|  7499 | ALLEN   |     30 | SALES      |
+|  7521 | WARD    |     30 | SALES      |
+|  7566 | JONES   |     20 | RESEARCH   |
+|  7654 | MARTIN  |     30 | SALES      |
+|  7698 | BLAKE   |     30 | SALES      |
+|  7782 | CLARK   |     10 | ACCOUNTING |
+|  7788 | SCOTT   |     20 | RESEARCH   |
+|  7839 | KING    |     10 | ACCOUNTING |
+|  7844 | TURNER  |     30 | SALES      |
+|  7876 | ADAMS   |     20 | RESEARCH   |
+|  7900 | JAMES   |     30 | SALES      |
+|  7902 | FORD    |     20 | RESEARCH   |
+|  7934 | MILLER  |     10 | ACCOUNTING |
+|  1002 | Amitabh |     30 | SALES      |
+|  1003 | Deepika |     20 | RESEARCH   |
++-------+---------+--------+------------+
+
+*************************************************************************************
+
+11.
+SELECT e.empno,e.ename,e.deptno,e.sal,s.grade
+FROM emp e
+JOIN salgrade s
+ON e.sal BETWEEN s.losal AND s.hisal;
++-------+--------+--------+---------+-------+
+| empno | ename  | deptno | sal     | grade |
++-------+--------+--------+---------+-------+
+|  7900 | JAMES  |     30 | 1045.00 |     1 |
+|  7876 | ADAMS  |     20 | 1210.00 |     2 |
+|  7521 | WARD   |     30 | 1375.00 |     2 |
+|  7654 | MARTIN |     30 | 1375.00 |     2 |
+|  7934 | MILLER |     10 | 1430.00 |     3 |
+|  7844 | TURNER |     30 | 1650.00 |     3 |
+|  7499 | ALLEN  |     30 | 1760.00 |     3 |
+|  7782 | CLARK  |     10 | 2695.00 |     4 |
+|  7698 | BLAKE  |     30 | 3135.00 |     5 |
+|  7369 | SMITH  |     20 | 3272.50 |     5 |
+|  7566 | JONES  |     20 | 3272.50 |     5 |
+|  7788 | SCOTT  |     20 | 3300.00 |     5 |
+|  7902 | FORD   |     20 | 3300.00 |     5 |
+|  7839 | KING   |     10 | 5500.00 |     5 |
++-------+--------+--------+---------+-------+
+
+*************************************************************************************
+
+12.
+SELECT e.empno,e.ename,e.mgr,m.ename 'manager'
+FROM emp e
+JOIN emp m
+WHERE e.mgr = m.empno;
++-------+--------+------+---------+
+| empno | ename  | mgr  | manager |
++-------+--------+------+---------+
+|  7902 | FORD   | 7566 | JONES   |
+|  7788 | SCOTT  | 7566 | JONES   |
+|  7900 | JAMES  | 7698 | BLAKE   |
+|  7844 | TURNER | 7698 | BLAKE   |
+|  7654 | MARTIN | 7698 | BLAKE   |
+|  7521 | WARD   | 7698 | BLAKE   |
+|  7499 | ALLEN  | 7698 | BLAKE   |
+|  7934 | MILLER | 7782 | CLARK   |
+|  7876 | ADAMS  | 7788 | SCOTT   |
+|  7782 | CLARK  | 7839 | KING    |
+|  7698 | BLAKE  | 7839 | KING    |
+|  7566 | JONES  | 7839 | KING    |
+|  7369 | SMITH  | 7902 | FORD    |
++-------+--------+------+---------+
+
+*************************************************************************************
+
+13.
+INSERT INTO emp(empno,ename,deptno)
+VALUES(9999,'Pooja',90);
+
+SELECT e.empno,e.ename,d.deptno,d.dname
+FROM emp e
+JOIN dept d
+ON e.deptno = d.deptno;
++-------+---------+--------+------------+
+| empno | ename   | deptno | dname      |
++-------+---------+--------+------------+
+|  7369 | SMITH   |     20 | RESEARCH   |
+|  7499 | ALLEN   |     30 | SALES      |
+|  7521 | WARD    |     30 | SALES      |
+|  7566 | JONES   |     20 | RESEARCH   |
+|  7654 | MARTIN  |     30 | SALES      |
+|  7698 | BLAKE   |     30 | SALES      |
+|  7782 | CLARK   |     10 | ACCOUNTING |
+|  7788 | SCOTT   |     20 | RESEARCH   |
+|  7839 | KING    |     10 | ACCOUNTING |
+|  7844 | TURNER  |     30 | SALES      |
+|  7876 | ADAMS   |     20 | RESEARCH   |
+|  7900 | JAMES   |     30 | SALES      |
+|  7902 | FORD    |     20 | RESEARCH   |
+|  7934 | MILLER  |     10 | ACCOUNTING |
+|  1002 | Amitabh |     30 | SALES      |
+|  1003 | Deepika |     20 | RESEARCH   |
++-------+---------+--------+------------+
+
+*************************************************************************************
+
+14.
+INSERT INTO dept(deptno,dname)
+VALUES(80,'Training');
+
+SELECT d.deptno,d.dname
+FROM dept d
+LEFT JOIN emp e
+ON e.deptno = d.deptno;
++--------+------------+
+| deptno | dname      |
++--------+------------+
+|     10 | ACCOUNTING |
+|     10 | ACCOUNTING |
+|     10 | ACCOUNTING |
+|     20 | RESEARCH   |
+|     20 | RESEARCH   |
+|     20 | RESEARCH   |
+|     20 | RESEARCH   |
+|     20 | RESEARCH   |
+|     20 | RESEARCH   |
+|     30 | SALES      |
+|     30 | SALES      |
+|     30 | SALES      |
+|     30 | SALES      |
+|     30 | SALES      |
+|     30 | SALES      |
+|     30 | SALES      |
+|     40 | OPERATIONS |
+|     80 | Training   |
++--------+------------+
+
+*************************************************************************************
+*************************************************************************************

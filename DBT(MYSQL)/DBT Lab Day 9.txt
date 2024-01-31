@@ -1,0 +1,183 @@
+--------------------
+Stored Procedure
+--------------------
+
+1. 
+delimiter //
+create procedure p1()
+begin 
+select avg(sal)
+from emp;
+end //
+delimiter ;
+
+call p1();
++--------------+
+| avg(sal)     |
++--------------+
+| 11520.000000 |
++--------------+
+
+***************************************************************************
+
+2.
+
+delimiter //
+create procedure pp2()
+begin 
+select avg(sal),deptno
+from emp
+where deptno=20;
+end //
+delimiter ;
+
+call pp2();
++--------------+--------+
+| avg(sal)     | deptno |
++--------------+--------+
+| 15725.833333 |     20 |
++--------------+--------+
+
+****************************************************************************
+
+3.
+
+delimiter //
+create procedure p3(dept int )
+begin 
+select avg(sal),deptno
+from emp
+where deptno=dept;
+end //
+delimiter ;
+
+call p3(10);
++-------------+--------+
+| avg(sal)    | deptno |
++-------------+--------+
+| 3208.333333 |     10 |
++-------------+--------+
+
+****************************************************************************
+
+4. 
+
+delimiter //
+create procedure p4(no int,out fact int )
+begin 
+declare i int;
+set i=1;
+set fact=1;
+while i<=no do
+set fact=fact*i;
+set i=i+1;
+end while;
+end //
+delimiter ;
+
+call p4(5,@f);
+select @f;
++------+
+| @f   |
++------+
+|  120 |
++------+
+
+********************************************************************************
+
+5.
+
+delimiter //
+create procedure p5(no int )
+begin 
+declare i int;
+declare prime int;
+set prime=1;
+set i=2;
+while i<no do
+	if no%i=0 then
+		set prime=0;
+	end if;
+	set i=i+1;
+end while;
+select prime;
+end //
+delimiter ;
+
+call p5(15);
+
+********************************************************************************
+
+6.
+
+delimiter //
+create procedure p6(no int )
+begin 
+declare msg varchar(20);
+declare msg2 varchar(20);
+declare cnt int;
+set msg='Employee found';
+set msg2='Employee not found';
+set cnt= (select count(*)
+		from emp
+		where empno=no);
+if cnt=1 then 
+select msg;
+else
+select msg2;
+end if;
+end //
+delimiter ;
+
+
+call p6(7844);
++----------------+
+| msg            |
++----------------+
+| Employee found |
++----------------+
+
+call p6(7845);
++--------------------+
+| msg2               |
++--------------------+
+| Employee not found |
++--------------------+
+
+*******************************************************************************
+
+7.
+delimiter //
+create procedure p7(id int,sals int)
+begin 
+update emp
+set sal=sals
+where empno=id;
+end //
+delimiter ;
+
+call p7(7844,2500);
+
+select * from emp where empno=7844;
++-------+--------+----------+------+------------+---------+------+--------+
+| EMPNO | ENAME  | JOB      | MGR  | HIREDATE   | SAL     | COMM | DEPTNO |
++-------+--------+----------+------+------------+---------+------+--------+
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 2500.00 | 0.00 |     30 |
++-------+--------+----------+------+------------+---------+------+--------+
+
+**********************************************************************************
+
+8.
+
+delimiter //
+create procedure p8(id int,name varchar(50),job varchar(50),sals int)
+begin
+insert into emp(empno,ename,job,sal) values (id,name,job,sals);
+end//
+delimiter ;
+
+call p8(7777,"Vaishi ","CEO",2000);
+
+
+
+

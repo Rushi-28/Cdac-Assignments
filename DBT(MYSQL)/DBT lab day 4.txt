@@ -1,0 +1,163 @@
+1-> 	select e.*,d.dname
+	from emp e,dept d
+	where sal>2000 and e.deptno=d.deptno;
+	
+	+-------+-------+-----------+------+------------+---------+------+--------+------------+
+	| EMPNO | ENAME | JOB       | MGR  | HIREDATE   | SAL     | COMM | DEPTNO | dname      |
+	+-------+-------+-----------+------+------------+---------+------+--------+------------+
+	|  7566 | JONES | MANAGER   | 7839 | 1981-04-02 | 2975.00 | NULL |     20 | RESEARCH   |
+	|  7698 | BLAKE | MANAGER   | 7839 | 1981-05-01 | 2850.00 | NULL |     30 | SALES      |
+	|  7782 | CLARK | MANAGER   | 7839 | 1981-09-06 | 2450.00 | NULL |     10 | ACCOUNTING |	
+	|  7788 | SCOTT | ANALYST   | 7566 | 1982-12-09 | 3000.00 | NULL |     20 | RESEARCH   |
+	|  7839 | KING  | PRESIDENT | NULL | 1981-11-17 | 5000.00 | NULL |     10 | ACCOUNTING |
+	|  7902 | FORD  | ANALYST   | 7566 | 1981-12-03 | 3000.00 | NULL |     20 | RESEARCH   |
+	+-------+-------+-----------+------+------------+---------+------+--------+------------+
+
+2-> 	select empno,ename,deptno from emp
+	where mgr=7698;
+
+	+-------+--------+--------+
+	| empno | ename  | deptno |
+	+-------+--------+--------+
+	|  7499 | ALLEN  |     30 |
+	|  7521 | WARD   |     30 |
+	|  7654 | MARTIN |     30 |
+	|  7844 | TURNER |     30 |
+	|  7900 | JAMES  |     30 |
+	+-------+--------+--------+
+	
+3->	select distinct job from emp;
+	+-----------+
+	| job       |
+	+-----------+
+	| CLERK     |
+	| SALESMAN  |
+	| MANAGER   |
+	| ANALYST   |
+	| PRESIDENT |
+	+-----------+
+
+4->	select distinct e.Deptno,d.dname from emp e,dept d
+	where e.deptno=d.deptno;
+
+**********************************************************************
+ASSIGNMENTS ON LIKE OPERATOR
+
+1->	select * from emp 
+	where ename like '%r';
+	+-------+--------+----------+------+------------+---------+------+--------+
+	| EMPNO | ENAME  | JOB      | MGR  | HIREDATE   | SAL     | COMM | DEPTNO |
+	+-------+--------+----------+------+------------+---------+------+--------+
+	|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 1500.00 | 0.00 |     30 |
+	|  7934 | MILLER | CLERK    | 7782 | 1982-01-23 | 1300.00 | NULL |     10 |	
+	+-------+--------+----------+------+------------+---------+------+--------+
+
+2->	select *from emp where ename like 'm%r';		miller 1 row
+
+3->	select *from emp where ename like 'm%' or ename like 'a%';	4 rows
+
+4->	select *from emp where ename like '__l%';		allen miller
+
+5->	select *from emp where ename like 'm_l%r';		miller
+
+6->	select *from emp where ename like '__l%e_';		allen miller
+
+7->	select *from emp where ename like '%e';			blake
+
+8->	select *from emp where (ename like 'm%' or ename like 'a%') and (ename like '%r' or ename like '%e');
+
+9->	select *from emp where ename like '__l%M__';
+
+10->	select *from emp where ename like 'c_e%k';
+
+11->	select *from emp where comm is null and ename like 's%';
+
+12->	select *from emp where (ename like 'a%' and ename like '%e') or (ename like 's%' and ename like '%h');
+
+13->	select *from emp where ename like '%as';
+
+14->	select *from emp where job like 'c%' and job like '%k';
+
+
+****************************************************************************************************************************
+
+USING REGEXp_LIKE FUNCTON
+
+1->	select ename ,job ,deptno from emp
+	where regexp_like(ename,'^a');
+	+-------+----------+--------+
+	| ename | job      | deptno |
+	+-------+----------+--------+
+	| ALLEN | SALESMAN |     30 |
+	| ADAMS | CLERK    |     20 |
+	+-------+----------+--------+
+
+2->	select ename ,job from emp
+	where regexp_like(ename,'.*r$');
+	+--------+----------+
+	| ename  | job      |
+	+--------+----------+
+	| TURNER | SALESMAN |
+	| MILLER | CLERK    |
+	+--------+----------+
+
+3->	select ename from emp where regexp_like(ename,'.*n.*');
+	+--------+
+	| ename  |
+	+--------+
+	| ALLEN  |
+	| JONES  |
+	| MARTIN |
+	| KING   |
+	| TURNER |
+	+--------+
+
+4->	select ename from emp where regexp_like(ename,'^[an]');
+	+-------+
+	| ename |
+	+-------+
+	| ALLEN |
+	| ADAMS |
+	+-------+
+
+5->	select ename from emp where regexp_like(ename,'^..n.*');
+
+6->	select ename from emp where regexp_like(ename,'^a.*n$|^m.*r$|^s.*h$');
+	+--------+
+	| ename  |
+	+--------+
+	| SMITH  |
+	| ALLEN  |
+	| MILLER |
+	+--------+
+
+7->	select ename from emp where regexp_like(ename,'^[^f]');
+
+8->	select ename from emp where regexp_like(ename,'^[ml]|.*r$' );
+	+--------+
+	| ename  |
+	+--------+
+	| MARTIN |
+	| TURNER |
+	| MILLER |
+	+--------+
+
+*****************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

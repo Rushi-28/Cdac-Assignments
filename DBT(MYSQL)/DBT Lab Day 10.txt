@@ -1,0 +1,391 @@
+PL-SQL
+------------------
+Functions
+------------------
+
+1. 
+set global log_bin_trust_function_creators=1;
+
+delimiter //
+create function total_sal(msal decimal(7,2) ,mcomm decimal(7,2) )
+returns decimal(7,2)
+begin
+	declare x decimal(7,2);
+	set x=msal+ifnull(mcomm,0);
+	return x;
+end //
+delimiter ;
+
+select ename,empno,sal,comm,total_sal(sal,comm)"gross salary"
+from emp;
++---------+-------+----------+---------+--------------+
+| ename   | empno | sal      | comm    | gross salary |
++---------+-------+----------+---------+--------------+
+| SMITH   |  7369 |  3272.50 |    NULL |      3272.50 |
+| ALLEN   |  7499 |  1760.00 |  300.00 |      2060.00 |
+| WARD    |  7521 |  1375.00 |  500.00 |      1875.00 |
+| JONES   |  7566 |  3272.50 |    NULL |      3272.50 |
+| MARTIN  |  7654 |  1375.00 | 1400.00 |      2775.00 |
+| BLAKE   |  7698 |  3135.00 |    NULL |      3135.00 |
+| CLARK   |  7782 |  2695.00 |    NULL |      2695.00 |
+| SCOTT   |  7788 |  3300.00 |    NULL |      3300.00 |
+| KING    |  7839 |  5500.00 |    NULL |      5500.00 |
+| TURNER  |  7844 |  2500.00 |    0.00 |      2500.00 |
+| ADAMS   |  7876 |  1210.00 |    NULL |      1210.00 |
+| JAMES   |  7900 |  1045.00 |    NULL |      1045.00 |
+| FORD    |  7902 |  3300.00 |    NULL |      3300.00 |
+| MILLER  |  7934 |  1430.00 |    NULL |      1430.00 |
+| Amitabh |  1002 | 70000.00 |    NULL |     70000.00 |
+| Deepika |  1003 | 80000.00 |    NULL |     80000.00 |
+| Pooja   |  9999 |     NULL |    NULL |         NULL |
+| Vaishi  |  7777 |  2000.00 |    NULL |      2000.00 |
++---------+-------+----------+---------+--------------+
+
+**************************************************************************
+
+2.
+delimiter ??
+create function newmail(mname varchar(10),mjob varchar(9))
+returns  varchar(20)
+begin	
+	declare mail varchar(20);
+	set mail=concat(upper(substr(mname,1,3)),lower(substr(mjob,-3,3)),'@knowit.co.in');
+return mail;
+end ??
+delimiter ;
+
+select ename,job,sal,newmail(ename,job) from emp e; 
++---------+-----------+----------+---------------------+
+| ename   | job       | sal      | newmail(ename,job)  |
++---------+-----------+----------+---------------------+
+| SMITH   | CLERK     |  3272.50 | SMIerk@knowit.co.in |
+| ALLEN   | SALESMAN  |  1760.00 | ALLman@knowit.co.in |
+| WARD    | SALESMAN  |  1375.00 | WARman@knowit.co.in |
+| JONES   | MANAGER   |  3272.50 | JONger@knowit.co.in |
+| MARTIN  | SALESMAN  |  1375.00 | MARman@knowit.co.in |
+| BLAKE   | MANAGER   |  3135.00 | BLAger@knowit.co.in |
+| CLARK   | MANAGER   |  2695.00 | CLAger@knowit.co.in |
+| SCOTT   | ANALYST   |  3300.00 | SCOyst@knowit.co.in |
+| KING    | PRESIDENT |  5500.00 | KINent@knowit.co.in |
+| TURNER  | SALESMAN  |  2500.00 | TURman@knowit.co.in |
+| ADAMS   | CLERK     |  1210.00 | ADAerk@knowit.co.in |
+| JAMES   | CLERK     |  1045.00 | JAMerk@knowit.co.in |
+| FORD    | ANALYST   |  3300.00 | FORyst@knowit.co.in |
+| MILLER  | CLERK     |  1430.00 | MILerk@knowit.co.in |
+| Amitabh | NULL      | 70000.00 | NULL                |
+| Deepika | NULL      | 80000.00 | NULL                |
+| Pooja   | NULL      |     NULL | NULL                |
+| Vaishi  | CEO       |  2000.00 | VAIceo@knowit.co.in |
++---------+-----------+----------+---------------------+
+
+****************************************************************************
+
+3. 
+delimiter //
+create function increment(mjob varchar(9),msal decimal(7,2))
+returns decimal(7,2)
+begin
+	declare x decimal(7,2);
+	if mjob='manager' then
+	set x=msal+msal*0.05;
+	end if;
+	if mjob='clerk' then
+	set x=msal+msal*0.07;
+	end if;
+	if mjob='analyst' then
+	set x=msal+msal*0.10;
+	end if;
+	if mjob='salesman' then
+	set x=msal+msal*0.10;
+	end if;
+	return x;
+end //
+delimiter ;
+
+select e.*,increment(e.job,e.sal)'New Sal' from emp e;
++-------+---------+-----------+------+------------+----------+---------+--------+---------+
+| EMPNO | ENAME   | JOB       | MGR  | HIREDATE   | SAL      | COMM    | DEPTNO | New Sal |
++-------+---------+-----------+------+------------+----------+---------+--------+---------+
+|  7369 | SMITH   | CLERK     | 7902 | 1980-12-17 |  3272.50 |    NULL |     20 | 3501.58 |
+|  7499 | ALLEN   | SALESMAN  | 7698 | 1981-02-20 |  1760.00 |  300.00 |     30 | 1936.00 |
+|  7521 | WARD    | SALESMAN  | 7698 | 1981-02-22 |  1375.00 |  500.00 |     30 | 1512.50 |
+|  7566 | JONES   | MANAGER   | 7839 | 1981-04-02 |  3272.50 |    NULL |     20 | 3436.13 |
+|  7654 | MARTIN  | SALESMAN  | 7698 | 1981-09-28 |  1375.00 | 1400.00 |     30 | 1512.50 |
+|  7698 | BLAKE   | MANAGER   | 7839 | 1981-05-01 |  3135.00 |    NULL |     30 | 3291.75 |
+|  7782 | CLARK   | MANAGER   | 7839 | 1981-09-06 |  2695.00 |    NULL |     10 | 2829.75 |
+|  7788 | SCOTT   | ANALYST   | 7566 | 1982-12-09 |  3300.00 |    NULL |     20 | 3630.00 |
+|  7839 | KING    | PRESIDENT | NULL | 1981-11-17 |  5500.00 |    NULL |     10 |    NULL |
+|  7844 | TURNER  | SALESMAN  | 7698 | 1981-09-08 |  2500.00 |    0.00 |     30 | 2750.00 |
+|  7876 | ADAMS   | CLERK     | 7788 | 1983-01-12 |  1210.00 |    NULL |     20 | 1294.70 |
+|  7900 | JAMES   | CLERK     | 7698 | 1981-12-03 |  1045.00 |    NULL |     30 | 1118.15 |
+|  7902 | FORD    | ANALYST   | 7566 | 1981-12-03 |  3300.00 |    NULL |     20 | 3630.00 |
+|  7934 | MILLER  | CLERK     | 7782 | 1982-01-23 |  1430.00 |    NULL |     10 | 1530.10 |
+|  1002 | Amitabh | NULL      | NULL | NULL       | 70000.00 |    NULL |     30 |    NULL |
+|  1003 | Deepika | NULL      | NULL | NULL       | 80000.00 |    NULL |     20 |    NULL |
+|  9999 | Pooja   | NULL      | NULL | NULL       |     NULL |    NULL |     90 |    NULL |
+|  7777 | Vaishi  | CEO       | NULL | NULL       |  2000.00 |    NULL |   NULL |    NULL |
++-------+---------+-----------+------+------------+----------+---------+--------+---------+
+
+********************************************************************
+
+4.
+delimiter ??
+create function emprow(mname varchar(10),mjob varchar(9))
+returns  varchar(20)
+begin	
+	declare r varchar(20);
+	set r=concat(upper(mname),' is a ',mjob);
+return r;
+end ??
+delimiter ;
+
+select ename,job,emprow(ename,job) from emp;
++---------+-----------+----------------------+
+| ename   | job       | emprow(ename,job)    |
++---------+-----------+----------------------+
+| SMITH   | CLERK     | SMITH is a CLERK     |
+| ALLEN   | SALESMAN  | ALLEN is a SALESMAN  |
+| WARD    | SALESMAN  | WARD is a SALESMAN   |
+| JONES   | MANAGER   | JONES is a MANAGER   |
+| MARTIN  | SALESMAN  | MARTIN is a SALESMAN |
+| BLAKE   | MANAGER   | BLAKE is a MANAGER   |
+| CLARK   | MANAGER   | CLARK is a MANAGER   |
+| SCOTT   | ANALYST   | SCOTT is a ANALYST   |
+| KING    | PRESIDENT | KING is a PRESIDENT  |
+| TURNER  | SALESMAN  | TURNER is a SALESMAN |
+| ADAMS   | CLERK     | ADAMS is a CLERK     |
+| JAMES   | CLERK     | JAMES is a CLERK     |
+| FORD    | ANALYST   | FORD is a ANALYST    |
+| MILLER  | CLERK     | MILLER is a CLERK    |
+| Amitabh | NULL      | NULL                 |
+| Deepika | NULL      | NULL                 |
+| Pooja   | NULL      | NULL                 |
+| Vaishi  | CEO       | VAISHI  is a CEO     |
++---------+-----------+----------------------+
+
+***************************************************************************
+
+
+-------------------
+CURSOR
+-------------------
+
+1.
+
+delimiter //
+create procedure c1()
+begin
+	declare mid int;
+	declare mname varchar(10);
+	declare flag int default 0;
+	DECLARE cur1 cursor
+	FOR select ename,empno from emp;
+		declare CONTINUE HANDLER
+		for NOT FOUND set flag=1;
+	OPEN cur1;
+	label1 : loop
+		FETCH cur1 into mname,mid;
+		if flag=1 then
+			leave label1;
+		end if;
+		select mname,mid;
+	end loop label1;
+	CLOSE cur1;
+end //
+delimiter ;
+	
+call c1();
+
+***********************************************
+
+2.
+ 
+delimiter //
+create procedure c2()
+begin 
+	DECLARE newp float(6,2);
+	DECLARE total float(6,2);
+	declare mpid int;
+	declare mname varchar(20);
+	declare mqty int;
+	declare mprice float(6,2);
+	declare flag int default 0;
+	DECLARE cur2 cursor for select pid,pname,price,qty from product;
+	declare CONTINUE HANDLER
+		for NOT FOUND set flag=1;
+	open cur2;
+	lab : loop
+		fetch cur2 into mpid,mname,mqty,mprice;
+		if flag=1 then leave lab ;
+		end if;
+		set total=mprice*mqty;
+		if total>5000 then
+		set newp=total-(total*0.1);
+		end if;
+		if total<5000 && total>1000 then
+		set newp=total-(total*0.07);
+		end if;
+		if total<1000 then
+		set newp=total-(total*0.05);
+		end if;
+	select mpid,mname,mqty,mprice,total,newp;
+	end loop lab;
+	close cur2;
+end //
+delimiter ;
+
+call c2();
++------+-------+------+--------+---------+---------+
+| mpid | mname | mqty | mprice | total   | newp    |
++------+-------+------+--------+---------+---------+
+|  111 | pepsi |   40 |  50.00 | 2000.00 | 1860.00 |
++------+-------+------+--------+---------+---------+
+1 row in set (0.00 sec)
+
++------+-------+------+--------+--------+--------+
+| mpid | mname | mqty | mprice | total  | newp   |
++------+-------+------+--------+--------+--------+
+|  123 | lays  |   30 |  30.00 | 900.00 | 855.00 |
++------+-------+------+--------+--------+--------+
+1 row in set (0.00 sec)
+
++------+------------+------+--------+---------+---------+
+| mpid | mname      | mqty | mprice | total   | newp    |
++------+------------+------+--------+---------+---------+
+|  124 | dairy milk |   40 |  60.00 | 2400.00 | 2232.00 |
++------+------------+------+--------+---------+---------+
+
+**********************************************************************
+
+3.
+delimiter //
+create procedure c3()
+begin
+	declare mid int;
+	declare mname varchar(10);
+	declare msal decimal(7,2);
+	declare mjob varchar(9);
+	declare flag int default 0;
+	DECLARE cur3 cursor
+	FOR select ename,empno,sal,job from emp;
+		declare CONTINUE HANDLER
+		for NOT FOUND set flag=1;
+	OPEN cur3;
+	label : loop
+		FETCH cur3 into mname,mid,msal,mjob;
+		if flag=1 then
+			leave label;
+		end if;
+	select mname,mid,msal,mjob;
+	if mjob='manager' then
+	set msal=msal+msal*0.05;
+	end if;
+	if mjob='clerk' then
+	set msal=msal+msal*0.07;
+	end if;
+	if mjob='analyst' then
+	set msal=msal+msal*0.10;
+	end if;
+	if mjob='salesman' then
+	set msal=msal+msal*0.10;
+	end if;
+		select mname,mid,msal,mjob;
+	end loop label ;
+	CLOSE cur3;
+end //
+delimiter ;
+	
+call c3();
++-------+------+---------+-------+
+| mname | mid  | msal    | mjob  |
++-------+------+---------+-------+
+| SMITH | 7369 | 3272.50 | CLERK |
++-------+------+---------+-------+
+1 row in set (0.00 sec)
+
++-------+------+---------+-------+
+| mname | mid  | msal    | mjob  |
++-------+------+---------+-------+
+| SMITH | 7369 | 3501.58 | CLERK |
++-------+------+---------+-------+
+1 row in set (0.00 sec)
+
++-------+------+---------+----------+
+| mname | mid  | msal    | mjob     |
++-------+------+---------+----------+
+| ALLEN | 7499 | 1760.00 | SALESMAN |
++-------+------+---------+----------+
+1 row in set (0.00 sec)
+
++-------+------+---------+----------+
+| mname | mid  | msal    | mjob     |
++-------+------+---------+----------+
+| ALLEN | 7499 | 1936.00 | SALESMAN |
++-------+------+---------+----------+ 
+etc.
+*****************************************************************
+
+4.extraa
+
+delimiter //
+CREATE PROCEDURE update_sal1()
+BEGIN
+	DECLARE mempno INT;
+	DECLARE mename VARCHAR(10);
+	DECLARE mjob VARCHAR(9);
+	DECLARE msal DECIMAL(7,2);
+	DECLARE mcomm DECIMAL(7,2);
+	DECLARE newsal DECIMAL(7,2);
+	DECLARE flag INT DEFAULT 0; 
+	DECLARE cur2 CURSOR
+	  FOR SELECT empno,ename,job,sal,comm
+	      FROM emp; 
+	DECLARE CONTINUE HANDLER 
+	FOR NOT FOUND SET flag = 1;
+	OPEN cur2;
+	start1 : loop
+	FETCH cur2 INTO mempno,mename,mjob,msal,mcomm;
+		if(flag =1) then
+			leave start1;
+		end if;
+	if(total_sal(msal,mcomm)>2500)
+	then
+	    SET newsal = msal * 1.05;
+	else
+		SET newsal = msal;
+	end if;
+	SELECT mempno,mename,mjob,msal,mcomm,newsal;
+	end loop start1;
+	CLOSE cur2;
+END //
+delimiter ;
+
+call update_sal1;
++--------+--------+-------+---------+-------+---------+
+| mempno | mename | mjob  | msal    | mcomm | newsal  |
++--------+--------+-------+---------+-------+---------+
+|   7369 | SMITH  | CLERK | 3272.50 |  NULL | 3436.13 |
++--------+--------+-------+---------+-------+---------+
+1 row in set (0.00 sec)
+
++--------+--------+----------+---------+--------+---------+
+| mempno | mename | mjob     | msal    | mcomm  | newsal  |
++--------+--------+----------+---------+--------+---------+
+|   7499 | ALLEN  | SALESMAN | 1760.00 | 300.00 | 1760.00 |
++--------+--------+----------+---------+--------+---------+
+1 row in set (0.00 sec)
+
++--------+--------+----------+---------+--------+---------+
+| mempno | mename | mjob     | msal    | mcomm  | newsal  |
++--------+--------+----------+---------+--------+---------+
+|   7521 | WARD   | SALESMAN | 1375.00 | 500.00 | 1375.00 |
++--------+--------+----------+---------+--------+---------+
+1 row in set (0.00 sec)
+
++--------+--------+---------+---------+-------+---------+
+| mempno | mename | mjob    | msal    | mcomm | newsal  |
++--------+--------+---------+---------+-------+---------+
+|   7566 | JONES  | MANAGER | 3272.50 |  NULL | 3436.13 |
++--------+--------+---------+---------+-------+---------+
+
+**********************************************************************************

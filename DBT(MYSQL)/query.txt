@@ -1,0 +1,36 @@
+1]select vid as 'Vehicle id',vname as 'vehicle name',price,discount,details
+  from vehicle;
+
+2]select details from vehicle
+  where vname ='Hero Splendor';
+
+3]update vehicle set vname="Hero Splendor"
+  where vid = 6;
+
+4]delete from Customer
+  where Location='Pimpri';
+
+5]select * from Salesman
+  where city='pune';
+
+6]update vehicle set price=80000
+  where vid=6;
+7]create table Customer1 select * from Customer;
+
+8]create table Salesman1 select * from Salesman;
+
+9]delete from Customer;
+
+10]drop table Salesman;
+
+11]select vid,vname,price,details, price-discount as 'total price'
+   from vehicle;
+12]select * from vehicle where price <100000;
+
+13]select * from Salesman1 where experience > 5;
+
+14]select * from employee where basic>15000;
+
+15]update employee set insentive=1000 where ename='Jitesh';
+
+

@@ -1,0 +1,17 @@
+create table employee
+(
+  eno int,
+  name varchar(15),
+  sal int,
+  hiredate date );
+
+describe employee;
+
+insert into employee
+values(1,'Seeta',20000,'2021-06-21');
+insert into employee
+values(2,'Geeta',30000,'2020-07-20');
+insert into employee
+values(3,'Seema',12000,'2023-06-23');
+insert into employee(eno,name)
+values(4,'Reshma');

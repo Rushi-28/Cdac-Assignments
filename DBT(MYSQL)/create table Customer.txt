@@ -1,0 +1,20 @@
+create table Customer
+(
+ Custid int,
+ Cname varchar(15),
+ Location varchar(30)
+);
+
+describe Customer;
+
+insert into Customer
+values(1,'Nilama',"Pimpri");
+
+insert into Customer
+values(2,'Ganesh',"Pune");
+
+insert into Customer
+values(3,'Kishor',"Kothrud");
+
+insert into Customer
+values(4,'Priya',"Aundh");

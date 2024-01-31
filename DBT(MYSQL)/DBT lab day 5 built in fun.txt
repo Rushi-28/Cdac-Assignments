@@ -1,0 +1,200 @@
+1->	select ename , job , concat(substr(ename,1,1),lower(substr(ename,2,9))," ",substr(job,1,1),lower(substr(job,2,9))) as "Final output" from emp;
+	+--------+-----------+-----------------+
+	| ename  | job       | Final output    |
+	+--------+-----------+-----------------+
+	| SMITH  | CLERK     | Smith Clerk     |
+	| ALLEN  | SALESMAN  | Allen Salesman  |
+	| WARD   | SALESMAN  | Ward Salesman   |
+	| JONES  | MANAGER   | Jones Manager   |
+	| MARTIN | SALESMAN  | Martin Salesman |
+	| BLAKE  | MANAGER   | Blake Manager   |
+	| CLARK  | MANAGER   | Clark Manager   |
+	| SCOTT  | ANALYST   | Scott Analyst   |
+	| KING   | PRESIDENT | King President  |
+	| TURNER | SALESMAN  | Turner Salesman |
+	| ADAMS  | CLERK     | Adams Clerk     |
+	| JAMES  | CLERK     | James Clerk     |
+	| FORD   | ANALYST   | Ford Analyst    |
+	| MILLER | CLERK     | Miller Clerk    |
+	+--------+-----------+-----------------+
+
+2-> select ename,length(ename) from emp;
+	+--------+---------------+
+	| ename  | length(ename) |
+	+--------+---------------+
+	| SMITH  |             5 |
+	| ALLEN  |             5 |
+	| WARD   |             4 |
+	| JONES  |             5 |
+	| MARTIN |             6 |
+	| BLAKE  |             5 |
+	| CLARK  |             5 |
+	| SCOTT  |             5 |
+	| KING   |             4 |
+	| TURNER |             6 |
+	| ADAMS  |             5 |
+	| JAMES  |             5 |
+	| FORD   |             4 |
+	| MILLER |             6 |
+	+--------+---------------+
+
+3->	select ename , job , concat(lower(substr(ename,1,3)),substr(ename,4,8))from emp;
+	+--------+-----------+----------------------------------------------------+
+	| ename  | job       | concat(lower(substr(ename,1,3)),substr(ename,4,8)) |
+	+--------+-----------+----------------------------------------------------+
+	| SMITH  | CLERK     | smiTH                                              |
+	| ALLEN  | SALESMAN  | allEN                                              |
+	| WARD   | SALESMAN  | warD                                               |
+	| JONES  | MANAGER   | jonES                                              |
+	| MARTIN | SALESMAN  | marTIN                                             |
+	| BLAKE  | MANAGER   | blaKE                                              |
+	| CLARK  | MANAGER   | claRK                                              |
+	| SCOTT  | ANALYST   | scoTT                                              |
+	| KING   | PRESIDENT | kinG                                               |
+	| TURNER | SALESMAN  | turNER                                             |
+	| ADAMS  | CLERK     | adaMS                                              |
+	| JAMES  | CLERK     | jamES                                              |
+	| FORD   | ANALYST   | forD                                               |
+	| MILLER | CLERK     | milLER                                             |
+	+--------+-----------+----------------------------------------------------+
+
+4->	select ename , substr(ename,-3,3) from emp; 
+	+--------+--------------------+
+	| ename  | substr(ename,-3,3) |
+	+--------+--------------------+
+	| SMITH  | ITH                |
+	| ALLEN  | LEN                |
+	| WARD   | ARD                |
+	| JONES  | NES                |
+	| MARTIN | TIN                |
+	| BLAKE  | AKE                |
+	| CLARK  | ARK                |
+	| SCOTT  | OTT                |
+	| KING   | ING                |
+	| TURNER | NER                |
+	| ADAMS  | AMS                |
+	| JAMES  | MES                |
+	| FORD   | ORD                |
+	| MILLER | LER                |
+	+--------+--------------------+
+
+5->	select ename, concat(lower(substr(ename,1,3)),lower(substr(job,-2,2)),"@knowit.com")as'emailId' from emp;
+	+--------+------------------+
+	| ename  | emailId          |
+	+--------+------------------+
+	| SMITH  | smirk@knowit.com |
+	| ALLEN  | allan@knowit.com |
+	| WARD   | waran@knowit.com |
+	| JONES  | joner@knowit.com |
+	| MARTIN | maran@knowit.com |
+	| BLAKE  | blaer@knowit.com |	
+	| CLARK  | claer@knowit.com |
+	| SCOTT  | scost@knowit.com |
+	| KING   | kinnt@knowit.com |
+	| TURNER | turan@knowit.com |
+	| ADAMS  | adark@knowit.com |
+	| JAMES  | jamrk@knowit.com |
+	| FORD   | forst@knowit.com |
+	| MILLER | milrk@knowit.com |
+	+--------+------------------+
+6->	select sal+(sal*0.1) from emp where extract(year from curdate)-extract(year from hiredate)>41;
+	or
+ 	select sal+(sal*0.1) from emp where datediff(curdate(),hiredate)>41;
+
+7-> 	select extract(year from curdate())-2000;
+
+8->	select extract(year from curdate());
+
+9->	select date_format(curdate(),'%d/%m/%y');
+
+10->	select extract( month from hiredate) ,ename from emp
+    	where extract(month from hiredate) = 4;
+
+11->	select count(*),extract(year from hiredate) from emp
+    	group by extract(year from hiredate)
+    	having count(*)>3 ;
+
+12->	select ename ,hiredate from emp
+    	where extract(year from hiredate) =1982;
+
+13-> 	select ename,hiredate,floor((datediff(curdate(),hiredate))/365)"Experience"
+	from emp
+	where (datediff(curdate(),hiredate))/365>41 ;
+	+--------+------------+------------+
+	| ename  | hiredate   | Experience |
+	+--------+------------+------------+
+	| SMITH  | 1980-12-17 |         42 |
+	| ALLEN  | 1981-02-20 |         42 |
+	| WARD   | 1981-02-22 |         42 |
+	| JONES  | 1981-04-02 |         42 |
+	| MARTIN | 1981-09-28 |         42 |
+	| BLAKE  | 1981-05-01 |         42 |
+	| CLARK  | 1981-09-06 |         42 |
+	| KING   | 1981-11-17 |         41 |
+	| TURNER | 1981-09-08 |         42 |
+	| JAMES  | 1981-12-03 |         41 |
+	| FORD   | 1981-12-03 |         41 |
+	| MILLER | 1982-01-23 |         41 |
+	+--------+------------+------------+
+
+
+14-> select ename,hiredate,(datediff(curdate(),hiredate))/365 "Years of experience " from emp;
+	+--------+------------+----------------------+
+	| ename  | hiredate   | Years of experience  |
+	+--------+------------+----------------------+
+	| SMITH  | 1980-12-17 |              42.8877 |
+	| ALLEN  | 1981-02-20 |              42.7096 |
+	| WARD   | 1981-02-22 |              42.7041 |
+	| JONES  | 1981-04-02 |              42.5973 |
+	| MARTIN | 1981-09-28 |              42.1068 |
+	| BLAKE  | 1981-05-01 |              42.5178 |
+	| CLARK  | 1981-09-06 |              42.1671 |
+	| SCOTT  | 1982-12-09 |              40.9096 |
+	| KING   | 1981-11-17 |              41.9699 |
+	| TURNER | 1981-09-08 |              42.1616 |
+	| ADAMS  | 1983-01-12 |              40.8164 |
+	| JAMES  | 1981-12-03 |              41.9260 |
+	| FORD   | 1981-12-03 |              41.9260 |
+	| MILLER | 1982-01-23 |              41.7863 |
+	+--------+------------+----------------------+
+
+
+15->select ename, concat((substr(ename,2,4)),(substr(job,2,2)),"@mycompany.com")as'emailId' from emp;
+	+--------+----------------------+
+	| ename  | emailId              |
+	+--------+----------------------+
+	| SMITH  | MITHLE@mycompany.com |
+	| ALLEN  | LLENAL@mycompany.com |
+	| WARD   | ARDAL@mycompany.com  |
+	| JONES  | ONESAN@mycompany.com |
+	| MARTIN | ARTIAL@mycompany.com |
+	| BLAKE  | LAKEAN@mycompany.com |
+	| CLARK  | LARKAN@mycompany.com |
+	| SCOTT  | COTTNA@mycompany.com |
+	| KING   | INGRE@mycompany.com  |
+	| TURNER | URNEAL@mycompany.com |
+	| ADAMS  | DAMSLE@mycompany.com |
+	| JAMES  | AMESLE@mycompany.com |
+	| FORD   | ORDNA@mycompany.com  |
+	| MILLER | ILLELE@mycompany.com |
+	+--------+----------------------+
+
+16->	select ename,deptno ,concat(ename,",",deptno) 'Emp Info'from emp;
+	+--------+--------+-----------+
+	| ename  | deptno | Emp Info  |
+	+--------+--------+-----------+
+	| SMITH  |     20 | SMITH,20  |
+	| ALLEN  |     30 | ALLEN,30  |
+	| WARD   |     30 | WARD,30   |
+	| JONES  |     20 | JONES,20  |
+	| MARTIN |     30 | MARTIN,30 |	
+	| BLAKE  |     30 | BLAKE,30  |
+	| CLARK  |     10 | CLARK,10  |
+	| SCOTT  |     20 | SCOTT,20  |
+	| KING   |     10 | KING,10   |
+	| TURNER |     30 | TURNER,30 |
+	| ADAMS  |     20 | ADAMS,20  |
+	| JAMES  |     30 | JAMES,30  |
+	| FORD   |     20 | FORD,20   |
+	| MILLER |     10 | MILLER,10 |
+	+--------+--------+-----------+

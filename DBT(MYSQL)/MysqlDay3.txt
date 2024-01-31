@@ -1,0 +1,54 @@
+create table emp10
+as 
+   select empno,ename,sal,job
+   from emp;
+
+create table dept10
+as 
+   select deptno,dname
+   from dept;
+
+create table stud111
+(
+  roll int unique,
+  name varchar(15) not null,
+  marks int check(marks>35),
+  city varchar(12) default 'Pune' 
+);
+
+insert into stud111
+values(1,'Geeta');
+insert into stud111
+insert into stud111(roll,name,marks)
+values(8,'Swati',67 );
+insert into stud111
+values(3,'Sameer',23);
+
+create table dept10
+(
+  deptno int,
+  dname varchar(10) not null,
+  constraint pk_no primary key(deptno)
+);
+
+insert into dept10
+values(10,'Sales'), 
+ (20,'MKT'),
+ (30,'Acc');
+
+create table emp10
+(eno int,
+ ename varchar(12) not null,
+ deptno int,
+ constraint pk_no primary key(eno),
+ constraint fk_no foreign key(deptno) references dept10(deptno)
+);
+
+insert into emp10
+values(1,'Seema',20),
+(2,'Geeta',10),
+(3,'Swati',30); 
+
+select e.eno,e.ename,e.deptno,d.deptno,d.dname
+from emp10 e ,dept10 d
+where e.deptno= d.deptno;

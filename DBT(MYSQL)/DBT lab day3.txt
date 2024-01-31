@@ -1,0 +1,198 @@
+1->	create table emp100
+	(
+	eno int ,
+	name varchar(15),
+	sal float(5,2));
+
+	alter table emp100
+    	add primary key (eno);
+	+-------+-------------+------+-----+---------+-------+
+	| Field | Type        | Null | Key | Default | Extra |
+	+-------+-------------+------+-----+---------+-------+
+	| eno   | int         | NO   | PRI | NULL    |       |
+	| name  | varchar(15) | YES  |     | NULL    |       |
+	| sal   | float(5,2)  | YES  |     | NULL    |       |
+	+-------+-------------+------+-----+---------+-------+
+
+	create table dept100 as select * from dept;
+
+	alter table dept100
+    	add primary key (deptno);
+
+2->	create table course
+	(
+	cid int primary key,
+	cname varchar(10) unique not null,
+	fees int default 5000
+	);
+
+	create table trainer
+	(
+	tid int primary key,
+	tname varchar(10)  not null,
+	cid int ,
+	salary int default 5000,
+	experiences int check (experiences >=10),
+	constraint fk_cid foreign key(cid) references course(cid) on delete set null
+	);
+
+	insert into course values(1,'core java',7000),
+	(2,'Linux',8000),
+	(3,'Data strut',10000),
+	(4,'Python',12000),
+	(5,'Dot net',null);
+
+	insert into trainer values
+	(1,'amit',2,50000,19),
+	(2,'rajan',1,60000,20),
+	(3,'shruti',2,55000,18),
+	(4,'arti',2,46000,16),
+	(5,'sameer',3,30000,12),
+	(6,'sanjay',null,25000,12),
+	(7,'soha',4,61000,21);
+
+	insert into trainer values(2,'mahesh',null,50000,12);
+		ERROR 1062 (23000): Duplicate entry '2' for key 'trainer.PRIMARY'
+	
+	insert into trainer values(8,'meena',3,25000,11); 
+		Query OK, 1 row affected (0.00 sec)
+
+	insert into trainer values(9,null,2,30000,10);
+		ERROR 1048 (23000): Column 'tname' cannot be null
+	
+	insert into trainer values(10,'soham',2,35000,8);
+		ERROR 3819 (HY000): Check constraint 'trainer_chk_1' is violated.
+
+	insert into trainer values(11,'Anil',3,null,11);
+		Query OK, 1 row affected (0.00 sec)
+	
+	delete from trainer
+	where tid=11;
+
+	delete from course
+	where cid=3;
+	 select * from course;
+	+-----+-----------+-------+
+	| cid | cname     | fees  |	
+	+-----+-----------+-------+
+	|   1 | core java |  7000 |
+	|   2 | Linux     |  8000 |	
+	|   4 | Python    | 12000 |
+	|   5 | Dot net   |  NULL |
+	+-----+-----------+-------+
+	4 rows in set (0.00 sec)
+		
+	mysql> select * from trainer;
+	+-----+--------+------+--------+-------------+
+	| tid | tname  | cid  | salary | experiences |
+	+-----+--------+------+--------+-------------+
+	|   1 | amit   |    2 |  50000 |          19 |
+	|   2 | rajan  |    1 |  60000 |          20 |
+	|   3 | shruti |    2 |  55000 |          18 |
+	|   4 |	 arti  |    2 |  46000 |          16 |
+	|   5 | sameer | NULL |  30000 |          12 |
+	|   6 | sanjay |    4 |  25000 |          12 |
+	|   7 | soha   |    4 |  61000 |          21 |
+	|   8 | meena  | NULL |  25000 |          11 |
+	+-----+--------+------+--------+-------------+
+	8 rows in set (0.00 sec)
+	
+	drop table trainer;
+
+	create table trainer
+	(
+	tid int primary key,
+	tname varchar(10)  not null,
+	cid int ,
+	salary int default 5000,
+	experiences int check (experiences >=10),
+	constraint fk_cid foreign key(cid) references course(cid) on delete cascade
+	);
+
+	insert into trainer values
+	(1,'amit',2,50000,19),
+	(2,'rajan',1,60000,20),
+	(3,'shruti',2,55000,18),
+	(4,'arti',2,46000,16),
+	(5,'sameer',3,30000,12),
+	(6,'sanjay',null,25000,12),
+	(7,'soha',4,61000,21);
+
+	delete from course
+	    ->  where cid=3;
+	
+	select * from course;
+	+-----+-----------+-------+
+	| cid | cname     | fees  |
+	+-----+-----------+-------+
+	|   1 | core java |  7000 |
+	|   2 | Linux     |  8000 |
+	|   4 | Python    | 12000 |
+	|   5 | Dot net   |  NULL |
+	+-----+-----------+-------+
+	
+	select * from trainer;
+	+-----+--------+------+--------+-------------+
+	| tid | tname  | cid  | salary | experiences |
+	+-----+--------+------+--------+-------------+
+	|   1 | amit   |    2 |  50000 |          19 |
+	|   2 | rajan  |    1 |  60000 |          20 |
+	|   3 | shruti |    2 |  55000 |          18 |
+	|   4 | arti   |    2 |  46000 |          16 |
+	|   6 | sanjay | NULL |  25000 |          12 |
+	|   7 | soha   |    4 |  61000 |          21 |	
+	+-----+--------+------+--------+-------------+
+
+
+3->	create table custvehicle
+	(
+		tid int primary key,
+		custid int not null,
+		vid int not null,
+		sid int not null,
+		buy_price int check (buy_price > 0));
+
+
+	insert into custvehicle values(1,1,1,10,75000),
+	(2,1,2,10,790000),
+	(3,2,3,11,80000),
+	(4,3,3,11,75000),
+	(5,3,2,10,800000);
+
+    1	alter table custvehicle
+	add rating int ;
+	
+    2	update custvehicle
+	set rating=5
+	where buy_price>90000;
+	
+    3 	Alter table vehicle
+	add constraint pk_vid primary key(vid);		
+	
+	alter table salesman1
+	add primary key(sid);
+
+    4 	select cv.tid,cv.custid,c.cname,v.vid,v.vname,s.sname,cv.buy_price
+	from vehicle v, customer1 c,custvehicle cv,salesman1 s
+	where c.cid=cv.custid and cv.sid=s.sid and v.vid=cv.vid;
+
+	+-----+--------+--------+-----+--------+--------+-----------+
+	| tid | custid | cname  | vid | vname  | sname  | buy_price |
+	+-----+--------+--------+-----+--------+--------+-----------+
+	|   1 |      1 | Dhiraj |   1 | Activa | Rajesh |     75000 |
+	|   2 |      1 | Dhiraj |   2 | Santro | Rajesh |    790000 |
+	|   3 |      2 | Ganesh |   3 | Yamaha | Seema  |     80000 |
+	|   4 |      3 | Kishor |   3 | Yamaha | Seema  |     75000 |
+	|   5 |      3 | Kishor |   2 | Santro | Rajesh |    800000 |
+	+-----+--------+--------+-----+--------+--------+-----------+
+
+4->	insert into vehicle values(8,'Passion',90000,null,50,'for passionate riders'),
+				(9,'Honda City',140000,null,20,'Best in Honda world'),
+				(10,'TVS iCube',140000,null,40,'Best in new world');
+
+
+5->	select vid,vname,price,details,price-(price*(ifnull(discount,0)/100)) as 'Total Price'
+	from vehicle;
+	
+
+

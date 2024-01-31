@@ -1,0 +1,72 @@
+On delete cascade/set null
+---------------------------
+create table cat
+(
+  cid int,
+  cname varchar(20) not null,
+  constraint pk_cid primary key(cid)
+);
+
+insert into cat
+values(10,'food'),
+      (20,'stationary'),
+      (30,'essentials');
+
+create table product
+(
+  pid int,
+  pname varchar(15) not null,
+  product_cid int,
+  constraint pk_pid primary key(pid),
+  constraint fk_cid foreign key(product_cid) references cat(cid)   on delete cascade
+);
+
+insert into product
+values(1,'Tooth Brush',30);
+insert into product
+values(2,'Tooth Pst',30);
+insert into product
+values(3,'Shampoo',30);
+
+insert into product
+values(9,'powder',null);
+
+insert into product
+values(7,'Lays',10);
+
+insert into cat
+values(40,'electronics');
+
+limit clause
+-------------
+
+display first 4 rows
+select * from emp
+limit 4;
+
+display 5th 6th and 7th row
+select * from emp
+limit 4,3;
+
+distinct clause
+----------------
+
+will supress duplicate entries
+
+select distinct job from emp;
+
+select distinct deptno,job from emp;
+will display unique combination of deptno and job
+---------------------------
+order by
+
+Sorts the data
+
+select * from emp
+order by sal;
+
+select * from emp
+order by job,sal desc;
+
+
+ 

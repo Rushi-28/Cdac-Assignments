@@ -1,0 +1,83 @@
+create table vehicle
+(
+vid int,
+vname varchar(15),
+price  int,
+discount int,
+milage int,
+details varchar(47)
+);
+ values (1,'Activa',80000,10,35,'Two.Wheeler.sturdy.milage.30km');
+insert into employee
+values (1,'achal','manager','12-2-2023');
+  
+insert into vehicle
+values (1,'Activa',80000,10,35,'Two.Wheeler.sturdy.milage.30km');
+  
+insert into vehicle
+values (2,'santro',95000,20,20,'product.of.hundaiye');
+insert into vehicle
+values (3,'yamaha',16000,5,70,'sturdy.Good.milage');
+insert into vehicle
+values (4,'i-10',300000,8,18,'good small car');
+insert into vehicle
+values (5,'Waganar',25000,10,35,'good milage car');
+insert into vehicle
+values (6,'hero splender',75000,9,65,'best bike');
+insert into vehicle
+values (7,'Royal Enfield',190000,5,40,'a Royal bike');
+
+create table coustomer
+(
+custid int,
+cname varchar(15),
+location varchar(47)
+);
+
+insert into coustomer
+values (1,'Nilima','Pimpri');
+insert into coustomer
+values (2,'Ganesh','Pune');
+insert into coustomer
+values (3,'Kishor','Kothrud');
+insert into coustomer
+values (4,'Priya','Aundh');
+
+create table salesman
+(
+sid int,
+sname varchar(15),
+city varchar(47),
+experience int
+);
+
+//for copy
+create table coustomer1 as select *from coustomer;
+
+insert into salesman
+values (10,'Rajesh','Mumbai',5);
+insert into salesman
+values (11,'Seema','Pune',8);
+insert into salesman
+values (12,'Shailesh','Nagpur',7);
+insert into salesman
+values (13,'Rakhi','Pune',2);
+
+create table employee1
+(
+eid int,
+ename varchar(15),
+basic int,
+incentive int
+);
+
+insert into employee1
+values (1,'Rajesh',20000,1500);
+insert into employee1
+values (2,'Sarita',21000,1000);
+insert into employee1
+values (3,'Meera',15000,3000);
+insert into employee1
+values (4,'Jitesh',30000,500);
+insert into employee1
+values (5,'Ramesh',12000,3000);

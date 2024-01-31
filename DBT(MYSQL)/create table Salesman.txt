@@ -1,0 +1,33 @@
+create table Salesman
+(
+  Sid int,
+  Sname varchar(20),
+  city varchar(15),
+  experience int
+);
+
+describe Salesman;
+
+insert into Salesman
+values(10,'Rajesh',"Mumbai",5);  
+
+insert into Salesman
+values(11,'Seema',"Pune",8);
+
+insert into Salesman
+values(12,'Shailesh',"Nagpur",7);
+
+insert into Salesman
+values(13,'Rakhi',"Pune",2);
+
+1] Display names of salesman who work in pune?
+
+select * from Salesman
+where city='pune';
+
++------+-------+------+------------+
+| Sid  | Sname | city | experience |
++------+-------+------+------------+
+|   11 | Seema | Pune |          8 |
+|   13 | Rakhi | Pune |          2 |
++------+-------+------+------------+
