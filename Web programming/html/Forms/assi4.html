@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Express registration</title>
+    <style>
+        textarea{
+            resize: none;
+        }
+        input,textarea,select{
+            background-color: aliceblue;
+        }
+        
+    </style>
+</head>
+<body>
+    <h3 style="color: red; font-style: italic;">Express Registration </h3>
+    <p>Please note that all fields that have an asterick(*) are required to process your registration</p>
+    <form action="">
+    <table>
+        <tr style="background-color:grey;color: white;">
+            <td colspan="2"> Personal details</td>
+            <td colspan="2"> Address</td>
+        </tr>
+        <tr>
+            <td><label for="title">Title:</label></td>
+            <td><input type="text" name="Title" id="title" placeholder="(Mr/Mrs/Miss)"></td>
+            <td rowspan="2"><label for="add">Address:</label></td>
+            <td><input type="text" name="Addr" id="add" placeholder="House no,area" required>*</td>
+        </tr>
+        <tr>
+            <td><label for="fnm">First Name:</label></td>
+            <td><input type="text" name="First" id="fnm" required>*</td>
+            <td><input type="text" name="Addr" id="add" placeholder="navigation"></td>
+        </tr>
+        <tr>
+            <td><label for="lnm">Last Name:</label></td>
+            <td><input type="text" name="Last" id="lnm" required>*</td>
+            <td><label for="twn">Town:</label></td>
+            <td><input type="text" name="First" id="twn" required>*</td>
+        </tr>
+        <tr>
+            <td><label for="mail">Email Address:</label></td>
+            <td><input type="email" name="Email" id="mail" required>*</td>
+            <td><label for="state">Country/State</label></td>
+            <td><input type="text" name="State" id="state" required>*</td>
+        </tr>
+        <tr>
+            <td><label for="tele">Telephone:</label></td>
+            <td><input type="number" name="Phone" id="tele" maxlength="10" required>*</td>
+            <td><label for="cnty">Country:</label></td>
+            <td><select name="Country" id="" required>
+                <option value="select" disabled selected>Select one</option>
+                <option value="United state">United state</option>
+                <option value="India">India</option>
+                <option value="UK">UK</option>
+                <option value="Russia">Russia</option>
+                <option value="Japan">Japan</option>
+                <option value="Pakistan">Pakistan</option>
+            </select>*</td>
+        </tr>
+        <tr>
+            <td><label for="cell">Cell phone:</label></td>
+            <td><input type="number" name="cPhone" id="cell" maxlength="10"></td>
+            <td><label for="code">Postcode:</label></td>
+            <td><input type="number" name="Pin" id="code" maxlength="6" required>*</td>
+        </tr>
+        <tr>
+            <td><label for="comm">Comment:</label></td>
+            <td><textarea name="Comment" id="comm" cols="50" rows="4"></textarea></td>
+        </tr>
+        <div style="border: 2px;border-color: green;">
+        <tr>
+            <td><label for="feed">Feedback:</label></td>
+            <td><input type="text" name="feedback" id="feed"></td>
+            <td><label for="us">Heat us from:</label></td>
+            <td><input type="checkbox" value="friend">Friend
+                <input type="checkbox" value="owner">Site Owner
+            <br><input type="checkbox" value="search">Search Engine</td>
+        </tr>
+    </div>
+        <tr>
+            <td colspan="4" style="background-color: grey;">Security Details</td>
+        </tr>
+        <tr>
+            <td> <label for="pwd">Choose Password:</label></td>
+            <td><input type="password" id="pwd" name="PWD" required>*</td>
+            <td> <label for="pwd">Confirm Password:</label></td>
+            <td><input type="password" id="pwd" name="PWD" required>*</td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2"><input type="submit" value="SUBMIT"></td>
+            <td><input type="reset" value="CLEAR"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

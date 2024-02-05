@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            alert("ready")
+            $("#f2").click(function(){
+                var dno=$("#f1").val();
+                alert(dno);
+                var url="http://localhost:9000/getall";
+                $.post(url,{deptno:dno},function(data,status){
+                    if(status="success")
+                    {
+                        var employee=JSON.parse(data);
+                        str=("<table border=1>")
+                        for(i=0;i<employee.length;i++){
+                            str+=("<tr>");
+                            str+=("<td>Employee name: "+employee[i].ENAME+"</td>");
+                            str+=("<td>Job: "+employee[i].JOB+"</td>");
+                            str+=("<td>Salary: "+employee[i].SAL+"</td>");
+                            str+=("<td>Commission: "+employee[i].COMM+"</td>");
+                            str+=("<td>Department No: "+employee[i].DEPTNO+"</td>");
+                            str+=("</tr>");  
+                        }
+                        str+=("</table>")
+                        $("#b1").html(str);
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <form action="" method="post">
+        Enter Department Id:
+        <input type="number" id="f1" name="dept">
+        <input type="button" value="Sent" id="f2">
+    </form>
+    <div id="b1"></div>
+</body>
+</html>

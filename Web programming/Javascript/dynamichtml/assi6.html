@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function cnt(no)
+        {
+            var or=no;
+            var res=0;
+            while(no!=0)
+            {
+                no=parseInt(no/10);
+                res++;
+            }
+            document.getElementById("raj").innerHTML=or+" has "+res+" no of Digits.";
+        }
+    </script>
+    <form action="">
+        <table style="border: 2px dotted purple; background-color: thistle;">
+            <tr>
+                <td>Enter no:</td>
+                <td> <input type="text" name="num" /></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="count digit" onclick="cnt(num.value)" /></td>
+            </tr>
+        </table>
+       </form>
+       <div id="raj"></div>
+</body>
+</html>

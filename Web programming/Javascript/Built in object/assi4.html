@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stopwatch</title>
+    <script>
+       hrs=0;
+        min=0;
+        sec=0;
+        function stopWatch()
+        {
+            var str="";
+            sec++;
+            if(sec<10)
+            {
+                sec="0"+parseInt(sec);
+            }
+            if(min<10)
+            {
+                min="0"+parseInt(min);
+            }
+            if(hrs<10)
+            {
+                hrs="0"+parseInt(hrs);
+            }
+            if(sec==60)
+            {
+                min++;
+                sec=0;
+            }
+            if(min==60)
+            {
+                hrs++;
+                min=0;
+            }
+            str=hrs+":"+min+":"+sec;
+            document.getElementById("ppp1").innerHTML=str;
+            f=setTimeout(()=>{stopWatch()},1000);
+        }
+
+        function start() {
+          stopWatch();
+        }
+        function pause()
+        {
+            clearInterval(f);
+        }
+        function reset()
+        {
+            stop();
+            hrs=min=sec=0;
+            document.getElementById("ppp1").innerHTML = str;
+        }
+    </script>
+    </script>
+</head>
+<body onload="stopWatch()">
+    <div id="ppp1">..</div>
+    <form action="">
+        <input type="button" value="start" onclick="start()">
+        <input type="button" value="pause" onclick="pause()">
+        <input type="button" value="stop" onclick="reset()">
+    </form>
+</body>
+</html>

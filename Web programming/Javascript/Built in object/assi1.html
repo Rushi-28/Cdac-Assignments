@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String functions</title>
+    <script>
+        var str="I am Rushikesh";
+        function findlen()
+        {
+            document.getElementById("p1").innerHTML="Length of string is: "+str.length;
+        }
+        function upp()
+        {
+            document.getElementById("p2").innerHTML="Uppercase: "+str.toUpperCase();
+        }
+        function loww()
+        {
+            document.getElementById("p3").innerHTML="Lowercase: "+str.toLowerCase();
+        }
+        function ser(chra)
+        {
+            document.getElementById("p4").innerHTML=chra+" is at index : "+str.indexOf(chra);
+        }
+        function serl(chs)
+        {
+            document.getElementById("p5").innerHTML=chs+" is at index : "+str.lastIndexOf(chs)+" from last";
+        }
+        function getele(ml)
+        {
+            document.getElementById("p6").innerHTML="Element at Index "+ml+" is "+str.charAt(ml);
+        }
+        function getel(m)
+        {
+            document.getElementById("p11").innerHTML="Ascci of Element at Index "+m+" is "+str.charCodeAt(m);
+        }
+        function ccc()
+        {
+            var str1=prompt("string 1: ");
+            var str2=prompt("string 2: ");
+            document.getElementById("p21").innerHTML="Concated string= "+str1.concat(str2);
+        }
+        function spi()
+        {
+            var pqr=str.split(" ");
+            document.getElementById("p31").innerHTML="split string= "+pqr;
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <input type="button" value="Length" onclick="findlen()" />
+        <input type="button" value="Upper case" onclick="upp()" />
+        <input type="button" value="Lower case" onclick="loww()" /><br>
+        <input type="text" name="chr" />
+        <input type="button" value="Search from front" onclick="ser(chr.value)" />
+        <input type="button" value="Search from last" onclick="serl(chr.value)" /><br>
+        <input type="text" name="ele" />
+        <input type="button" value="Element at index" onclick="getele(ele.value)" />
+        <input type="button" value="Element ascii at index" onclick="getel(ele.value)" /><br>
+        <input type="button" value="Concat 2 str " onclick="ccc()">
+        <input type="button" value="split String" onclick="spi()" />
+
+    </form>
+    <div id="p1"></div>
+    <div id="p2"></div>
+    <div id="p3"></div>
+    <div id="p4"></div>
+    <div id="p5"></div>
+    <div id="p6"></div>
+    <div id="p11"></div>
+    <div id="p21"></div>
+    <div id="p31"></div>
+    <div id="p41"></div>
+    <div id="p51"></div>
+    <div id="p61"></div>
+</body>
+</html>

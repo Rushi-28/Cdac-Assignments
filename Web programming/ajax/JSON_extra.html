@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            alert("ready")
+            $("#b1").on("click","a",function(){
+                $(this).next().next().slideToggle("slow");
+            })
+
+            $("#f2").click(function(){
+                var dno=$("#f1").val();
+                alert(dno);
+                var url="http://localhost:9000/getlink";
+                $.post(url,{deptno:dno},function(data,status){
+                    alert("post")
+                    if(status="success")
+                    {
+                        var employee=JSON.parse(data);
+                        str="";
+                        for(i=0;i<employee.length;i++){
+                            str+="<a href='#'>"+employee[i].EMPNO+"</a>";
+                            str+="<br>"
+                            str+="<div style='display:none'>" 
+                            str+=("<p>Employee name: "+employee[i].ENAME+"</p>");
+                            str+=("<p>Job: "+employee[i].JOB+"</p>");
+                            str+=("<p>Salary: "+employee[i].SAL+"</p>");
+                            
+                                str+="</div>" 
+                        }
+                        
+                        $("#b1").html(str);
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <form action="" method="post">
+        Enter Department Id:
+        <input type="number" id="f1" name="dept">
+        <input type="button" value="Sent" id="f2">
+    </form>
+    <div id="b1"></div>
+</body>
+</html>

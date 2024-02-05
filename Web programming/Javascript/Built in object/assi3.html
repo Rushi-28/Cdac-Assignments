@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital clock</title>
+    <script>
+        function digiclock()
+        {
+            var cd=new Date();
+            var hrs=cd.getHours();
+            var mn=cd.getMinutes();
+            var sc=cd.getSeconds();
+            if(hrs<10)
+            hrs="0"+hrs;
+            if(mn<10)
+            mn="0"+mn;
+            if(sc<10)
+            sc="0"+sc;
+            
+            document.getElementById("c1").innerHTML=hrs+":"+mn+":"+sc;
+
+            setTimeout(()=>{digiclock()},1000)
+        }
+        
+        
+    </script>
+</head>
+<body onload="digiclock()">
+    <div id="c1" style="float: right;background-color: aqua;"></div>
+</body>
+</html>

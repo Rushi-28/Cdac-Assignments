@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+          //  alert("ready")
+            $("#uid").blur(function(){
+               // alert("Blur")
+                var url="http://localhost:9000/lk?user="+$("#uid").val();
+              //  alert(url)
+                $.get(url,function(data,status){
+                  //  alert(".getmethod")
+                    if(status=="success")
+                    {
+                        $("#d1").html(data);
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <form action="">
+        Enter userid
+        <input type="text" name="uid" id="uid" >
+        <div id="d1" style="color: red;"></div>
+        <br>
+        Enter password
+        <input type="password" name="pwd" id="pwd">
+    </form>
+</body>
+</html>

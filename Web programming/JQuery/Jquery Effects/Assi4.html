@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+           $("#ballimg").animate({"left":"+=1300px"},2000);
+           $("#ballimg").animate({"top":"+=500px"},2000);
+           $("#ballimg").animate({"left":"-=1300px"},2000);
+           $("#ballimg").animate({"top":"-=500px"},2000);
+           $("#ballimg").animate({"top":"+=500px","left":"+=1300px","height":"+=100","width":"+=100"},2000);
+           $("#ballimg").animate({"top":"-=500px"},2000);
+           $("#ballimg").animate({"top":"+=500px","left":"-=1300px","height":"+=100","width":"+=100"},2000);
+        
+        })
+    </script>
+</head>
+<body>
+    <img src="football.gif" alt="" width="200" height="200" id="ballimg" style="position: relative;top: 10px; left: 10px;">
+</body>
+</html>

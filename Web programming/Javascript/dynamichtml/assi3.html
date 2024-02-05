@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fact tables</title>
+</head>
+<body>
+    <script>
+        function fact(no)
+        {
+            var res;
+            res=1;
+            while(no>0)
+            {
+                res*=no;
+                no--;
+            }
+            return res;
+        }
+    function facttable()
+    {
+        var str=" ";
+        var res;
+        res=1;
+        str+="<table style='background-color: tomato;' border='1'>";
+            for(var i=1;i<11;i++)
+            {
+                str+="<tr>";
+                    str+="<td>";
+                        str+=i;
+                    str+="</td>";
+                    str+="<td>";
+                        str+=fact(i);
+                    str+="</td>";
+                str+="</tr>";
+            }
+        str+="</table>";
+        document.getElementById("place").innerHTML=str;
+        alert("Submitted")
+    }
+</script>
+<form action="">
+    <input type="button" value="factorial" onclick="facttable()">
+</form>
+<div id="place"></div>
+</body>
+</html>

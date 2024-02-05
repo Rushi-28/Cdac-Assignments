@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>array</title>
+</head>
+<body>
+    <script>
+        
+        function ins(no)
+        {
+            arr=[];
+            for(var i=0;i<no;i++)
+            {
+               arr[i]=prompt("enter no"); 
+            }
+            
+            var str=" ";
+            str+="<ol>";
+            for(i in arr)
+            {
+                str+="<li>";
+                str+=arr[i];
+                str+="</li>";
+                console.log(str)
+            }
+            str+="</ol>";
+            document.getElementById("nm").innerHTML=str;
+        }
+        function sr(num)
+        {
+            var p;
+            p=arr.indexOf(num);
+            document.getElementById("idr").innerHTML=num+" is at index "+p;
+        }
+    </script>
+    <form action="">
+        <input type="number" name="sz" />
+        <input type="button" value="Insert" onclick="ins(sz.value)" /><br>
+        <input type="number" name="idx" />
+        <input type="button" value="search" onclick="sr(idx.value)" /><br>
+    </form>
+    
+    <div id="nm"></div>
+    <div id="idr"></div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>img slideshow</title>
+    <script>
+        var imgr=["img1.jpg","b.jpg","bb.jpg","bbb.jpg","bbbb.jpg","moon.jpg"]
+        var i=0;
+        function shownxt()
+        {
+            i++;
+            if(i==imgr.length)
+            i=0;
+            document.getElementById("immm").src=imgr[i];
+        }
+        function showpre()
+        {
+            i--;
+            if(i==-1)
+            i=imgr.length-1;
+            document.getElementById("immm").src=imgr[i];
+        }
+    </script>
+</head>
+<body>
+    <img src="img1.jpg" width="700" height="500" id="immm">
+    <form action="">
+        <input type="button" value="Previous" onclick="showpre()">
+        <input type="button" value="Next" onclick="shownxt()">
+    </form>
+</body>
+</html>

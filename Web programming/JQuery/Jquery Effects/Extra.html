@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jq/jquery-3.7.1.min.js"></script>
+    <script>
+        var weakpat=/^[a-z]{1,15}$/
+        var strpat=/[a-z]{0,15}[A-Z]{1,15}[\w]{1,15}[a-z]{0,15}/
+
+        $(document).ready(function(){
+            $("#pwd").keyup(function(){
+                var len=$("#pwd").val().length;
+                var pass=$("#pwd").val();
+                if(len<8)
+                $("#sp").html("Invalid password");
+                else if(weakpat.test(pass))
+                $("#sp").html("weak password")
+            })
+        })
+    </script>
+</head>
+<body>
+    <input type="password" maxlength="15" id="pwd">
+    <br>
+    <button id="bt">submit</button>
+    <span id="sp"></span>
+
+</body>
+</html>

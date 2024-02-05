@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>palindrome</title>
+</head>
+<body>
+    <script>
+        function palchk(no)
+        {
+            var res,mod,num=0;
+            var ori=no;
+            while(no!=0)
+            {
+                mod=no%10;
+                no=parseInt(no/10);
+                num*=10;
+                num+=mod;
+            }
+            if(num==ori)
+            res="is a palindrome";
+            else 
+            res="is not palindrome"
+            document.getElementById("palres").innerHTML=res;
+        }
+    </script>
+    <form action="">
+        <table>
+            <tr><td>Enter Number:</td><td><input type="text" name="num" /></td></tr>
+            <tr><td><input type="button" value="Check Palindrome" onclick="palchk(num.value)" /></td></tr>
+        </table>
+    </form>
+    <div id="palres"></div>
+</body>
+</html>

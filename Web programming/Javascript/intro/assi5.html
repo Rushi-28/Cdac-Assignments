@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prime</title>
+</head>
+<body>
+    <script>
+        function primechk(no)
+        {
+            var flag;
+            flag=true;
+            for(var i=2;i<no;i++)
+            {
+                if(no%i==0)
+                {
+                    flag=false;
+                    break;
+                } 
+            }
+            if(flag)
+            document.write(no+" is prime no");
+            else
+            document.write(no+" is not prime no");
+        }
+    </script>
+   <form action="">
+        Enter no: <input type="text" name="num" />
+        <input type="button" value="Check Prime" onclick="primechk(num.value)" />
+   </form>
+</body>
+</html>

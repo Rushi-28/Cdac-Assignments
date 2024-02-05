@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#bt1").click(function(){
+                var url="http://localhost:9000/createtbl?eid="+$("#eid").val();
+                $.get(url,function(data,status){
+                    if(status=="success")
+                    {
+                        $("#div1").html(data);
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <form action="">
+        Enter Employee id:
+        <input type="text" id="eid" name="eid">
+        <input type="button" value="Get Details"  id="bt1">
+    </form>
+    <div id="div1"></div>
+</body>
+</html>

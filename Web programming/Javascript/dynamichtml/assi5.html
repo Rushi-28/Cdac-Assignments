@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>primestyle</title>
+    <style>
+        input[type="button"]:hover
+        {
+            background-color: blue;
+        }
+        h1{
+            background-color: antiquewhite;
+            color: red;
+            text-shadow: 5px 3px 5px darkkhaki;
+        }
+        .cont{
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <marquee behavior="" direction="down">
+    <h1>ChEcK PrImE NuMbEr</h1>
+    </marquee>
+    <script>
+        function primechk(no)
+        {
+            var flag;
+            flag=true;
+            for(var i=2;i<no;i++)
+            {
+                if(no%i==0)
+                {
+                    flag=false;
+                    break;
+                } 
+            }
+            var res=no;
+            flag==true?res+=" is a prime no":res+=" is a not prime no";
+            document.getElementById("dhiraj").innerHTML=res;
+            
+        }
+    </script>
+    <marquee behavior="scroll" direction="right" scrollamount="100">
+   <form action="">
+    <table style="border: 2px dotted purple; background-color: thistle;">
+        <tr>
+            <td>Enter no:</td>
+            <td> <input type="text" name="num" /></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="Check Prime" onclick="primechk(num.value)" /></td>
+        </tr>
+    </table>
+   </form>
+</marquee>
+<marquee behavior="" direction="left" scrollamount="100">
+   <div id="dhiraj"></div>
+</marquee>
+<marquee behavior="" direction="down">
+<img src="spiderman.gif" alt="" width="100" height="150" scrollamount="80" >
+</marquee>
+</body>
+</html>

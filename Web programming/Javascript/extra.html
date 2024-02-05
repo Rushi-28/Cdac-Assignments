@@ -1,0 +1,23 @@
+<html>
+    <head></head>
+    <script>
+        function toggleButton(){
+            var button = document.getElementById("btn");
+            var input1 = document.getElementById("pass1");
+            if(button.value == "show"){
+                input1.type = "text";
+                button.value = "hide";
+            }
+            else{
+                input1.type = "password";
+                button.value = "show";
+            }
+        }
+    </script>
+    <body>
+        <form>
+            <input type="password" id="pass1" >
+            <input type="button" id="btn" name="button" value="show" onclick="toggleButton()">
+        </form>
+    </body>
+</html>

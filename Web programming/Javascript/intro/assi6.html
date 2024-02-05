@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>factorial</title>
+</head>
+<body>
+    <script>
+        function fact(no)
+        {
+            var res;
+            res=1;
+            while(no>0)
+            {
+                res*=no;
+                no--;
+            }
+            document.getElementById("place").innerHTML=res;
+            alert("Submitted")
+        }
+    </script>
+    <form action="">
+        Enter No: <input type="number" name="num" /><br>
+        <input type="button" value="factorial" onclick="fact(num.value)">
+
+    </form>
+    <div id="place"></div>
+</body>
+</html>

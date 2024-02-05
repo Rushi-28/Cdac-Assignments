@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form validate</title>
+    <script>
+        function validd()
+        {
+            var ud=document.getElementById("uidtext").value;
+            var pattern1=/^[A-Za-z.]{5,15}$/
+           if(!pattern1.test(ud)) 
+           {
+             document.getElementById("d1").innerHTML="Length should between 5-15";
+             document.form1.uidtext.value="";
+             document.form1.uidtext.focus();
+             return;
+           }
+           else
+           document.getElementById("d1").innerHTML="";
+
+
+           var pwd=document.getElementById("pwdtext").value;
+           var pwdpat=/^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&])[A-Za-z0-9!@#$%^&*]{5,}$/
+        if(!pwdpat.test(pwd))
+        {
+            document.getElementById("d2").innerHTML = "Invalid pwd";
+            document.form1.pwd.value="";
+            document.f1.pwd.focus();
+            return;
+        }
+        else
+        document.getElementById("d2").innerHTML = "";
+        document.form1.submit();
+        }
+    </script>
+</head>
+<body>
+    <form name="form1" action="" method="get">
+        <table>
+            <tr> 
+                <td><label for="uidtext"> UID: </label></td>
+                <td><input type="text" name="uid" id="uidtext"></td>
+            </tr>
+            <div id="d1"></div>
+            <tr> 
+                <td><label for="pwdtext">PWD:</label></td>
+                <td><input type="password" name="pwd" id="pwdtext"></td>
+            </tr>
+            <div id="d2"> </div>
+            <tr>
+                <td><input type="button" value="LOGIN" onclick="validd()"></td>
+                <td align="center"><input type="reset" value="CLEAR"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

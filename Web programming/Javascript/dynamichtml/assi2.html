@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power</title>
+</head>
+<body>
+    <script>
+        function power(base,power)
+        {
+            var res=1;
+            for(var i=1;i<=power;i++)
+            {
+                res=res*base;
+            }
+            document.getElementById("space").innerHTML=base+" to the power "+power+" is "+res;
+        }
+        
+    </script>
+    <form action="">
+    <table style="background-color: tomato;" border="1">
+        <tr>
+            <td>Enter Base Number: </td>
+            <td><input type="number" name="bs" ></td>
+        </tr>
+        <tr>
+            <td>Enter Exponent Number: </td>
+            <td><input type="number" name="pw" ></td>
+        </tr>
+        <tr>
+           <td><input type="button" value="Calculate" onclick="power(bs.value,pw.value)"></td> 
+        </tr>
+    </table>
+</form>
+    <div id="space" style="margin-left: 100px;"></div>
+
+</body>
+</html>

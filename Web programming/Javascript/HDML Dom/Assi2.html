@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tabular</title>
+    <script>
+        function crtable()
+        {var nodes=document.getElementsByTagName("p");
+        var str="<table border='1'>"
+        for(var i=0;i<nodes.length;i++)
+        {
+            str+="<tr>";
+                str+="<td>";
+                    str+=nodes[i].firstChild.nodeValue;
+                    str+="</td>";
+                str+="</tr>";
+        }
+        str+="</table>"
+        document.getElementById("dhiru").innerHTML=str;
+    }
+    function heading()
+    {
+var headnode=document.querySelectorAll("h1,h2,h3,h4,h5")
+
+for(j in headnode)
+{
+ headnode[j].style.color="red";
+}
+    }
+    function hgt()
+    {
+        var node1=document.getElementsByTagName("p");
+        for(k of node1)
+        {
+            k.style.backgroundColor="yellow"
+        }
+    }
+    </script>
+</head>
+<body>
+    <h1>Para 1</h1>
+    <p>
+        this is paragraph about hdml dom
+    </p>
+    <h2>About </h2>
+    <p> Hdml dom is document object model </p>
+    <h3>More...</h3>
+    <p> It is part of java script</p>
+    <button onclick="crtable()">Show in table</button>
+    <button onclick="heading()">Highlight heading</button>
+    <button onclick="hgt()">text background</button>
+    <div id="dhiru"></div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jq/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+          $("img.thumb").mouseover(function(){
+            $("#imgr").attr("src",$(this).attr("src"));
+          })
+        })
+        
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <td colspan="4"><img src="moon.jpg" alt="" width="500" height="500" id="imgr"> </td>
+        </tr>
+        <tr>
+            <td><img src="moon.jpg" alt="" width="100" height="100" class="thumb"></td>
+            <td><img src="img1.jpg" alt="" width="100" height="100" class="thumb"></td>
+            <td><img src="b.jpg" alt="" width="100" height="100" class="thumb"></td>
+            <td><img src="bbbb.jpg" alt="" width="100" height="100" class="thumb"></td>
+        </tr>
+    </table>
+</body>
+</html>

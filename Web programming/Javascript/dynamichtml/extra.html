@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2digit prime</title>
+</head>
+<body>
+    <script>
+        function primen()
+        {
+            console.log("ssss")
+            
+            var str=" <ul>";
+            for(var i=10;i<99;i++)
+            {
+                var flag=true;
+                console.log("ppppp")
+                for(var j=2;j<i;j++)
+                {
+                    console.log("llll")
+                    if(i%j==0)
+                    {
+                        flag=false;
+                        break;
+                    }
+                }
+                
+                if(flag==true)
+                {
+                    console.log(i);
+                    str+="<li>";
+                        str+=i;
+                    
+                    str+="</li>";  
+                    str+="<br/>";
+                }
+                
+            }
+            
+            str+="</ul>"
+            document.getElementById("ram").innerHTML=str;
+        }
+    </script>
+    <form action="">
+        <input type="button" value="Prime no" onclick="primen()">
+    </form>
+    <div id="ram"></div>
+</body>
+</html>

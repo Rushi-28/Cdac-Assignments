@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        function createAjaxObj()
+        {
+            try{
+                var aj= new XMLHttpRequest();
+                return aj;
+            }
+            catch
+            {
+                try{
+                    var ajx=new ActiveXObject("Microsoft.XMLHTTP");
+                    return ajx;
+                }
+                catch{
+                    alert("Can't create ajax")
+                }
+            }
+        }
+        function ajaxcall()
+        {
+            ajax=createAjaxObj();
+            if(ajax)
+            alert("ajax obj created");
+            var url="http://localhost:9000/home?nm="+document.getElementById("nm").value;
+            alert(url);
+            ajax.onreadystatechange=updatePage;
+            ajax.open("GET",url,true)
+            ajax.send("");
+        }
+        function updatePage()
+        {
+            alert(ajax.readyState)
+            if(ajax.readyState==4)
+            {
+                document.getElementById("d1").innerHTML=ajax.responseText;
+            }
+        }
+    </script>
+</head>
+<body >
+    <form action="">
+        name:
+        <input type="text" name="nm" id="nm">
+        <input type="button" value="sent" onclick="ajaxcall()">
+    </form>
+    <div id="d1"></div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sortarr</title>
+</head>
+<body>
+    <div id="raju"></div>
+        <div id="raj"></div> 
+        <div id="ram"></div> 
+            <div id="mx"></div>
+            <div id="mn"></div>
+            <div id="a1"></div>
+            <div id="a2"></div>
+            <div id="a3"></div>
+            <div id="a4"></div>
+            <div id="a5"></div>
+    <script>
+      arr=[20,62,42,13,5];
+      arr1=[3,5,7,11]
+      document.write(arr.toString());
+      arr.sort();
+      document.write("<br/>")
+      document.write(arr.toString());
+      
+      function num(a,b)
+      {
+        return a-b;
+      }
+      /*arr.sort(num);
+      document.write("<br/>")
+      document.write(arr.toString());*/
+
+
+      /*      arr.sort(function(a,b){return a-b});
+      document.write("<br/>")
+      document.write(arr.toString());*/
+
+    arr.sort((a,b)=>a-b);
+    document.write("<br/>")
+      // document.write(arr.toString());
+      var loki=" ";
+      loki+="<ul>";
+      for(i of arr)
+      {
+        loki+="<li>";
+            loki+=i;
+            loki+="</li>";
+            console.log(loki);
+      }
+      loki+="</ul>";
+      document.getElementById("raju").innerHTML=loki+"<br/>";
+
+      var sum=arr.reduce((s,v)=>s+v);
+      document.getElementById("raj").innerHTML="Sum of elements: "+sum+"<br/>";
+      document.getElementById("ram").innerHTML="Average :"+sum/(arr.length);
+      var maxx=arr.reduce((s,v)=>s>v?s:v);
+      document.getElementById("mx").innerHTML="Maximum element: "+maxx+"<br/>";
+
+      var minn=arr.reduce((s,v)=>s<v?s:v);
+      document.getElementById("mn").innerHTML="Minimun elements: "+minn+"<br/>";
+
+      var lll=arr1.every((v)=>v%2==0);
+      document.getElementById("a1").innerHTML="All even: "+lll+"<br/>";
+
+      var mmm=arr1.every((v)=>v%2!=0);
+      document.getElementById("a2").innerHTML="All odd: "+mmm+"<br/>";
+
+      var nnn=arr1.every((v)=>{var flag=true;
+                                for(var j=0;j<v;j++)
+                                {
+                                    if(v%i==0)
+                                    {
+                                        flag=false;
+                                        break;
+                                    }
+                                }
+                                return flag;
+                            });
+      document.getElementById("a3").innerHTML="All prime: "+nnn+"<br/>";
+      var alleven=arr.filter((v)=>v%2==0)
+      document.getElementById("a4").innerHTML="All odd array: "+alleven+"<br/>";
+
+      var allodd=arr.filter((v)=>v%2!=0)
+      document.getElementById("a5").innerHTML="All odd array: "+allodd+"<br/>";
+    </script>
+    
+
+</body>
+</html>

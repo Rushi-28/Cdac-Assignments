@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>factorial</title>
+</head>
+<body>
+    <script>
+        function fact(no)
+        {
+            var res;
+            res=1;
+            var p=no;
+            while(no>0)
+            {
+                res*=no;
+                no--;
+            }
+            document.getElementById("place").innerHTML="factorial of "+p+" is "+res;
+            alert("Submitted")
+        }
+    </script>
+    <form action="">
+        <table border="1" style="background-color: tomato;">
+            <tr>
+                <td>Enter No:</td>
+                <td><input type="number" name="num" /><br></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="factorial" onclick="fact(num.value)"></td>
+
+            </tr>
+        </table>
+         
+        
+    </form>
+    <div id="place" style="margin-left: 50px;"></div>
+</body>
+</html>
